@@ -189,7 +189,107 @@ tbody td.d{color:var(--text2);}
 
 /* LOADING */
 .state-box{text-align:center;padding:4rem 2rem;color:var(--text3);}
+
+/* ── ANALITIK ── */
+.pivot-section{margin-bottom:2rem;}
+.pivot-section h3{font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:.75rem;}
+.pivot-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow-x:auto;box-shadow:var(--sh);}
+.pivot-table{border-collapse:collapse;font-size:.75rem;min-width:100%;}
+.pivot-table th{background:#1E2761;color:#fff;padding:.45rem .7rem;text-align:center;font-weight:600;font-size:.68rem;white-space:nowrap;}
+.pivot-table th.row-hdr{text-align:left;min-width:120px;}
+.pivot-table td{padding:.4rem .65rem;border-bottom:1px solid var(--bg);text-align:center;color:var(--text2);}
+.pivot-table td.row-label{text-align:left;font-weight:600;color:var(--text);background:var(--bg);}
+.pivot-table td.grand{font-weight:700;color:var(--text);background:#EEF2FF;}
+.pivot-table tr.grand-row td{font-weight:700;background:#1E2761;color:#fff;}
+.pivot-table tr:hover td:not(.row-label){background:#F0F4FF;}
+.pivot-table td.val-hi{color:#065F46;font-weight:600;}
+.pivot-table td.val-bd{color:#991B1B;font-weight:600;}
+.charts-analitik{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;}
+@media(max-width:860px){.charts-analitik{grid-template-columns:1fr;}}
+.chart-card-a{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.3rem;box-shadow:var(--sh);}
+.chart-card-a h3{font-size:.7rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.85rem;}
+.pv-cell{transition:background .15s;}
+.pv-cell:hover{background:#EEF2FF!important;color:#3730A3!important;font-weight:700;}
+.pv-active{background:#DBEAFE!important;color:#1E40AF!important;font-weight:700;outline:2px solid #3B82F6;}
+.drill-badge{display:flex;align-items:center;justify-content:space-between;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:.65rem 1rem;margin-bottom:1rem;font-size:.8rem;color:#1E40AF;gap:.75rem;flex-wrap:wrap;}
+.drill-clear{background:#1E2761;color:#fff;border:none;padding:.3rem .85rem;border-radius:7px;font-size:.75rem;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+.drill-clear:hover{background:#3B82F6;}
+.drill-empty{text-align:center;padding:2rem;color:#9CA3AF;font-size:.82rem;}
+#branchChart{cursor:pointer;}
+
+/* ── UPDATE STATUS TAB ── */
+.upd-wrap{max-width:520px;margin:0 auto;padding:.5rem 0 2rem;}
+.upd-search-box{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.3rem;margin-bottom:1rem;box-shadow:var(--sh);}
+.upd-search-box h3{font-size:.72rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem;}
+.upd-input{width:100%;padding:.65rem .9rem;border-radius:10px;border:1.5px solid var(--border);font-size:.95rem;font-family:inherit;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s;}
+.upd-input:focus{border-color:var(--indigo);}
+.upd-results{margin-top:.65rem;display:flex;flex-direction:column;gap:.45rem;max-height:260px;overflow-y:auto;}
+.upd-result-item{padding:.7rem 1rem;border-radius:10px;border:1.5px solid var(--border);background:var(--white);cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.upd-result-item:hover{border-color:var(--indigo);background:var(--indigo-bg);}
+.upd-result-item.active{border-color:var(--indigo);background:var(--indigo-bg);}
+.upd-nopol{font-weight:700;font-size:.9rem;color:var(--text);}
+.upd-meta{font-size:.72rem;color:var(--text2);margin-top:.18rem;}
+.upd-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.3rem;margin-bottom:1rem;box-shadow:var(--sh);animation:fadeIn .2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.upd-form-title{font-size:.72rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:1rem;}
+.upd-unit-card{background:var(--bg);border-radius:10px;padding:.85rem 1rem;margin-bottom:1.1rem;display:grid;grid-template-columns:1fr 1fr;gap:.35rem .75rem;}
+.upd-unit-card .uc-row{display:flex;flex-direction:column;gap:.1rem;}
+.upd-unit-card .uc-label{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;}
+.upd-unit-card .uc-val{font-size:.82rem;font-weight:600;color:var(--text);}
+.upd-status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:1.1rem;}
+.upd-st-btn{padding:.65rem .4rem;border-radius:10px;border:2px solid var(--border);background:var(--white);cursor:pointer;text-align:center;transition:all .15s;font-family:inherit;}
+.upd-st-btn .st-icon{font-size:1.3rem;display:block;margin-bottom:.25rem;}
+.upd-st-btn .st-label{font-size:.7rem;font-weight:700;display:block;}
+.upd-st-btn.sel-READY{border-color:#10B981;background:#ECFDF5;} .upd-st-btn.sel-READY .st-label{color:#065F46;}
+.upd-st-btn.sel-BREAKDOWN{border-color:#EF4444;background:#FEF2F2;} .upd-st-btn.sel-BREAKDOWN .st-label{color:#991B1B;}
+.upd-st-btn.sel-MANGKRAK{border-color:#F59E0B;background:#FFFBEB;} .upd-st-btn.sel-MANGKRAK .st-label{color:#92400E;}
+.upd-st-btn.sel-LAKA{border-color:#8B5CF6;background:#F5F3FF;} .upd-st-btn.sel-LAKA .st-label{color:#5B21B6;}
+.upd-st-btn.sel-PROGRES{border-color:#3B82F6;background:#EFF6FF;} .upd-st-btn.sel-PROGRES .st-label{color:#1E40AF;}
+.upd-st-btn.disabled-st{opacity:.4;cursor:not-allowed;}
+.upd-field{margin-bottom:.8rem;}
+.upd-field label{display:block;font-size:.72rem;font-weight:600;color:var(--text2);margin-bottom:.35rem;}
+.upd-field input,.upd-field textarea,.upd-field select{width:100%;padding:.6rem .85rem;border-radius:9px;border:1.5px solid var(--border);font-size:.85rem;font-family:inherit;color:var(--text);background:var(--bg);outline:none;transition:border-color .2s;resize:vertical;}
+.upd-field input:focus,.upd-field textarea:focus,.upd-field select:focus{border-color:var(--indigo);}
+.upd-ws-section{background:var(--bg);border-radius:10px;padding:.85rem 1rem;margin-bottom:1rem;display:none;}
+.upd-ws-section.show{display:block;}
+.upd-ws-title{font-size:.7rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem;}
+.btn-submit{width:100%;padding:.85rem;border-radius:12px;border:none;background:var(--indigo);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.btn-submit:hover{background:#4338CA;}
+.btn-submit:active{transform:scale(.98);}
+.btn-submit:disabled{background:#9CA3AF;cursor:not-allowed;}
+.upd-toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#1F2937;color:#fff;padding:.75rem 1.4rem;border-radius:12px;font-size:.85rem;font-weight:600;z-index:9999;box-shadow:var(--sh2);opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
+.upd-toast.show{opacity:1;}
+.upd-toast.ok{background:#065F46;}
+.upd-toast.err{background:#991B1B;}
+.upd-history{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.3rem;box-shadow:var(--sh);}
+.upd-history h3{font-size:.72rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.8rem;}
+.hist-item{padding:.65rem .85rem;border-radius:9px;border-left:3px solid var(--border);background:var(--bg);margin-bottom:.5rem;font-size:.78rem;}
+.hist-item .hi-nopol{font-weight:700;color:var(--text);}
+.hist-item .hi-change{color:var(--text2);margin-top:.15rem;}
+.hist-item .hi-time{color:var(--text3);font-size:.7rem;margin-top:.1rem;}
+.empty-hist{text-align:center;color:var(--text3);padding:1.5rem;font-size:.82rem;}
+/* Analitik filter bar */
+.a-filterbar{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:.85rem 1.1rem;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;box-shadow:var(--sh);}
+.a-filter-left{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.a-filter-right{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.a-filter-label{font-size:.7rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+.afb{padding:.24rem .7rem;border-radius:999px;border:1px solid var(--border);background:var(--white);color:var(--text2);font-size:.71rem;font-weight:500;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;white-space:nowrap;}
+.afb:hover{border-color:var(--indigo);color:var(--indigo);}
+.afb.on{background:var(--indigo-bg);border-color:var(--indigo);color:var(--indigo);font-weight:700;}
+.afb.on.s-ready{background:#ECFDF5;border-color:#10B981;color:#065F46;}
+.afb.on.s-bd{background:#FEF2F2;border-color:#EF4444;color:#991B1B;}
+.afb.on.s-mang{background:#FFFBEB;border-color:#F59E0B;color:#92400E;}
+.a-sel{padding:.26rem .6rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.71rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;max-width:160px;}
+.a-sel:focus{border-color:var(--indigo);}
+.a-search{padding:.26rem .7rem;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.71rem;font-family:'Inter',sans-serif;outline:none;width:170px;transition:border-color .2s;}
+.a-search:focus{border-color:var(--indigo);}
+.a-clear{background:#EF4444;color:#fff;border:none;padding:.28rem .75rem;border-radius:7px;font-size:.71rem;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+.a-clear:hover{background:#DC2626;}
+.a-filter-info{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:.55rem 1rem;margin-bottom:1rem;font-size:.78rem;color:#1E40AF;}
 .state-box h2{font-size:.95rem;color:var(--text);margin:.75rem 0 .35rem;}
+.sh-btn{flex:1;padding:.38rem .3rem;border-radius:8px;border:1.5px solid var(--border);background:var(--white);color:var(--text2);font-size:.67rem;font-weight:600;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;}
+.sh-btn:hover{border-color:var(--indigo);color:var(--indigo);}
+.sh-btn-on{border-color:var(--indigo)!important;background:var(--indigo)!important;color:#fff!important;}
 .spinner{width:30px;height:30px;border-radius:50%;border:2.5px solid var(--border);border-top-color:var(--indigo);animation:spin .8s linear infinite;margin:0 auto;}
 
 /* INSTALL BANNER */
@@ -235,6 +335,11 @@ tbody td.d{color:var(--text2);}
     <div class="sb-name">Fleet Dashboard<span>PT Pos Logistik Indonesia</span></div>
   </div>
   <nav class="sb-nav">
+    <div class="nav-lbl">Armada</div>
+    <div id="sheetSwitcher" style="display:flex;gap:.3rem;margin-bottom:.85rem;padding:.15rem;">
+      <button id="btnSheetInv" onclick="switchSheet('investasi')" class="sh-btn sh-btn-on">KBM Investasi</button>
+      <button id="btnSheetVend" onclick="switchSheet('vendor')" class="sh-btn">KBM Vendor</button>
+    </div>
     <div class="nav-lbl">Menu</div>
     <button class="nav-item on" id="nav-kpi" onclick="showTab('kpi')">
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
@@ -244,6 +349,15 @@ tbody td.d{color:var(--text2);}
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Workshop Tracking
       <span class="badge-count" id="wsBadge" style="display:none">0</span>
+    </button>
+    <button class="nav-item" id="nav-analitik" onclick="showTab('analitik')">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.5l5-5 4 4 5.5-5.5M21 8v6h-6"/></svg>
+      Analitik Armada
+    </button>
+    <button class="nav-item" id="nav-update" onclick="showTab('update')">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+      Update Status
+      <span class="badge-count" style="background:#F59E0B;display:inline-flex" id="updateBadge">BARU</span>
     </button>
   </nav>
   <div class="sb-foot">
@@ -275,6 +389,12 @@ tbody td.d{color:var(--text2);}
         </svg>
         Refresh
       </button>
+      <button class="btn-ref" id="btnPPT" onclick="downloadPPT()" style="background:#059669;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-8m0 8l-3-3m3 3l3-3M20 16v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2"/>
+        </svg>
+        Download PPT
+      </button>
     </div>
   </div>
 
@@ -288,16 +408,23 @@ tbody td.d{color:var(--text2);}
     <div id="tab-ws" style="display:none">
       <div class="state-box"><div class="spinner"></div><h2>Mengambil data workshop...</h2></div>
     </div>
+    <div id="tab-analitik" style="display:none">
+      <div class="state-box"><div class="spinner"></div><h2>Memuat analitik...</h2></div>
+    </div>
+    <div id="tab-update" style="display:none"></div>
   </div>
 </div>
 
 <script>
-const API_URL   = "https://script.google.com/macros/s/AKfycbwHF1rfz4m-cGZecvy9By2vVjqN4Buma2F9KhCtj0u_i8y16geNQxFCfXf-OX-R6azi3A/exec";
+const API_URL   = "https://script.google.com/macros/s/AKfycbw9mZ4NDk1sZMAYkwDf7x1fZOOj9E8eI1cH-F48ipP6QAiERmutm9FDidv7ARDtqmBf7g/exec";
+const API_URL_V = API_URL; // same script, vendor returned in json.vendor
 const REFRESH_MS= 5*60*1000, KPI_R=90, KPI_B=10, PG=15;
 
 let allUnits=[],filteredUnits=[],wsUnits=[];
+let vendorUnits=[],activeSheet='investasi'; // 'investasi' or 'vendor'
 let curFilter="ALL",curPage=1,searchQ="",curTab="kpi";
-let donutChart=null,cdLeft=REFRESH_MS,cdTimer=null,deferredPrompt=null;
+let filterBisnis="",filterBisDet="",filterRute="",filterBranch="";
+let donutChart=null,branchChart=null,cdLeft=REFRESH_MS,cdTimer=null,deferredPrompt=null;
 
 // ── SIDEBAR MOBILE ───────────────────────────────────────
 function toggleSidebar(){
@@ -312,12 +439,35 @@ function closeSidebar(){
 // ── TABS ─────────────────────────────────────────────────
 function showTab(t){
   curTab=t;
-  document.getElementById('tab-kpi').style.display = t==='kpi'?'block':'none';
-  document.getElementById('tab-ws').style.display  = t==='ws' ?'block':'none';
-  document.getElementById('nav-kpi').classList.toggle('on', t==='kpi');
-  document.getElementById('nav-ws').classList.toggle('on',  t==='ws');
-  document.getElementById('tbTitle').textContent = t==='kpi'?'Dashboard Overview':'Workshop Tracking';
-  document.getElementById('tbSub').textContent   = t==='kpi'?'KBM Investasi':'Status Perbaikan Unit';
+  document.getElementById('tab-kpi').style.display      = t==='kpi'     ?'block':'none';
+  document.getElementById('tab-ws').style.display       = t==='ws'      ?'block':'none';
+  document.getElementById('tab-analitik').style.display = t==='analitik'?'block':'none';
+  document.getElementById('tab-update').style.display   = t==='update'  ?'block':'none';
+  document.getElementById('nav-kpi').classList.toggle('on',      t==='kpi');
+  document.getElementById('nav-ws').classList.toggle('on',       t==='ws');
+  document.getElementById('nav-analitik').classList.toggle('on', t==='analitik');
+  document.getElementById('nav-update').classList.toggle('on',   t==='update');
+  const sheetLabel = activeSheet==='vendor'?'KBM Vendor':'KBM Investasi';
+  const titles={kpi:'Dashboard Overview',ws:'Workshop Tracking',analitik:'Analitik Armada',update:'Update Status Unit'};
+  const subs  ={kpi:sheetLabel,ws:'Status Perbaikan Unit',analitik:'Distribusi per Regional & Jenis',update:'Edit langsung dari HP'};
+  document.getElementById('tbTitle').textContent = titles[t]||'';
+  document.getElementById('tbSub').textContent   = subs[t]||'';
+  if(t==='analitik'){
+    if(allUnits.length>0){
+      try{ renderAnalitik(); }
+      catch(e){
+        console.error('Analitik error:',e);
+        document.getElementById('tab-analitik').innerHTML=
+          '<div class="state-box"><div style="font-size:2rem">⚠️</div><h2>Error render analitik</h2><p style="font-size:.75rem">'+e.message+'</p><button onclick="renderAnalitik()" style="margin-top:1rem;padding:.5rem 1.2rem;border-radius:8px;background:var(--indigo);color:#fff;border:none;cursor:pointer;font-family:inherit">Coba Lagi</button></div>';
+      }
+    } else {
+      document.getElementById('tab-analitik').innerHTML='<div class="state-box"><div class="spinner"></div><h2>Menunggu data...</h2></div>';
+    }
+  }
+  if(t==='update') renderUpdateTab();
+  // Hide BARU badge once visited
+  const ub=document.getElementById('updateBadge');
+  if(t==='update'&&ub) ub.style.display='none';
   closeSidebar();
 }
 
@@ -336,7 +486,7 @@ async function loadData(){
   const btn=document.getElementById("btnRef");
   if(btn)btn.classList.add("loading");
   try{
-    const res=await fetch(API_URL);
+    const res=await fetch(API_URL+"?t="+Date.now());
     if(!res.ok)throw new Error(`HTTP ${res.status}`);
     const json=await res.json();
 
@@ -352,11 +502,57 @@ async function loadData(){
     const ci=n=>hdrs.indexOf(n), cip=p=>hdrs.findIndex(h=>h.includes(p));
     const cv=(r,i)=>i>=0&&i<r.length?String(r[i]||"").trim():"";
     const iSt=ci("STATUS"),iNo=ci("NOPOL"),iReg=cip("REGIONAL"),iTh=cip("TAHUN"),iJn=cip("JENIS"),iMr=ci("MEREK"),iBs=ci("BISNIS");
+    const iBsDet=hdrs.findIndex(h=>h.includes("DETAIL"));
+    const iRute=hdrs.findIndex(h=>h==="RUTE"||h.includes("RUTE"));
+    const iBranch=hdrs.findIndex(h=>h.includes("BRANCH")||h==="BRANCH OFFICE");
     allUnits=[];
     for(let i=hIdx+1;i<kbmRows.length;i++){
       const r=kbmRows[i],st=cv(r,iSt).toUpperCase(),no=cv(r,iNo);
       if(!st||!no||st==="STATUS")continue;
-      allUnits.push({status:st,nopol:no,regional:cv(r,iReg),tahun:cv(r,iTh),jenis:cv(r,iJn),merek:cv(r,iMr),bisnis:cv(r,iBs)});
+      allUnits.push({
+        status:st, nopol:no, regional:cv(r,iReg), tahun:cv(r,iTh),
+        jenis:cv(r,iJn), merek:cv(r,iMr), bisnis:cv(r,iBs),
+        bisnis_detail:iBsDet>=0?cv(r,iBsDet):"",
+        rute:iRute>=0?cv(r,iRute):"",
+        branch:iBranch>=0?cv(r,iBranch):""
+      });
+    }
+
+    // Parse KBM Vendor
+    vendorUnits=[];
+    const vendorRows=json.vendor||[];
+    if(vendorRows.length>1){
+      let vhIdx=-1;
+      for(let i=0;i<Math.min(vendorRows.length,10);i++){
+        const c=vendorRows[i].map(x=>String(x).toUpperCase().trim());
+        if(c.includes("STATUS")&&c.includes("NOPOL")){vhIdx=i;break;}
+      }
+      if(vhIdx>=0){
+        const vhdrs=vendorRows[vhIdx].map(x=>String(x).toUpperCase().trim());
+        const vci=n=>vhdrs.indexOf(n), vcip=p=>vhdrs.findIndex(h=>h.includes(p));
+        const vcv=(r,i)=>i>=0&&i<r.length?String(r[i]||"").trim():"";
+        const viSt=vci("STATUS"),viNo=vci("NOPOL"),viTh=vcip("TAHUN"),viJn=vcip("JENIS"),viMr=vcip("MEREK"),viBs=vcip("BISNIS");
+        const viBsDet=vhdrs.findIndex(h=>h.includes("DETAIL"));
+        const viRute=vhdrs.findIndex(h=>h==="RUTE"||h.includes("RUTE"));
+        // Branch Office: cari kolom BRANCH OFFICE atau BRANCH
+        const viBranch=vhdrs.findIndex(h=>h==="BRANCH OFFICE"||h.includes("BRANCH")||h==="REGIONAL OFFICE"||h.includes("REGIONAL"));
+        const viKep=vhdrs.findIndex(h=>h.includes("KEPEMILIKAN")||h.includes("VENDOR"));
+        for(let i=vhIdx+1;i<vendorRows.length;i++){
+          const r=vendorRows[i],st=vcv(r,viSt).toUpperCase(),no=vcv(r,viNo);
+          if(!st||!no||st==="STATUS")continue;
+          const branchVal=viBranch>=0?vcv(r,viBranch):"";
+          vendorUnits.push({
+            status:st, nopol:no,
+            branch:branchVal,
+            regional:branchVal, // sama dengan branch untuk vendor
+            tahun:vcv(r,viTh), jenis:vcv(r,viJn),
+            merek:vcv(r,viMr), bisnis:vcv(r,viBs),
+            bisnis_detail:viBsDet>=0?vcv(r,viBsDet):"",
+            rute:viRute>=0?vcv(r,viRute):"",
+            vendor:viKep>=0?vcv(r,viKep):""
+          });
+        }
+      }
     }
 
     // Parse Workshop
@@ -372,11 +568,14 @@ async function loadData(){
         if(!no)continue;
         const tglMasuk=r[wi.tgl]?new Date(r[wi.tgl]):null;
         const hariMasuk=tglMasuk?Math.floor((new Date()-tglMasuk)/(1000*60*60*24)):null;
+        // Match nopol to KBM status
+        const kbmUnit = allUnits.find(u=>u.nopol===no);
         wsUnits.push({
           no:r[wi.no], nopol:no, kendaraan:String(r[wi.kendaraan]||"").trim(),
           keluhan:String(r[wi.keluhan]||"").trim(), tgl:r[wi.tgl]?String(r[wi.tgl]).trim():"",
           bengkel:String(r[wi.bengkel]||"").trim(), progress:prog,
-          estimasi:r[wi.estimasi]?String(r[wi.estimasi]).trim():"", hari:hariMasuk
+          estimasi:r[wi.estimasi]?String(r[wi.estimasi]).trim():"", hari:hariMasuk,
+          kbmStatus: kbmUnit?kbmUnit.status:"BREAKDOWN"
         });
       }
     }
@@ -389,11 +588,14 @@ async function loadData(){
     const ts=now.toLocaleDateString("id-ID",{day:"2-digit",month:"short",year:"numeric"})+" "+now.toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit",second:"2-digit"});
     const el1=document.getElementById("syncTime"),el2=document.getElementById("syncSub"),el3=document.getElementById("sbTime");
     if(el1)el1.textContent=ts;
-    if(el2)el2.textContent=`${allUnits.length} unit · ${json.sheet||"KBM Investasi"}`;
+    if(el2)el2.textContent=`${allUnits.length} unit · ${activeSheet==="vendor"?"KBM VENDOR":json.sheet||"KBM INVESTASI NEW"}`;
     if(el3)el3.textContent="Update: "+ts;
 
     document.getElementById("errBar").style.display="none";
+    setActiveUnits();
     startCd(); renderKPI(); renderWS();
+    if(curTab==='analitik') renderAnalitik();
+    if(curTab==='update') renderUpdateTab();
   }catch(e){
     const b=document.getElementById("errBar"); document.getElementById("errMsg").textContent=e.message; b.style.display="flex";
     if(allUnits.length===0) document.getElementById("tab-kpi").innerHTML=`<div class="state-box"><div style="font-size:2rem;margin-bottom:.6rem">⚠️</div><h2>Gagal memuat data</h2><p style="font-size:.78rem">${e.message}</p></div>`;
@@ -402,21 +604,71 @@ async function loadData(){
   }
 }
 
+// ── SHEET SWITCHER ───────────────────────────────────────
+function setActiveUnits(){
+  if(activeSheet==='vendor'){
+    allUnits = vendorUnits.length ? vendorUnits : allUnits;
+  }
+  // else allUnits already set from investasi parsing
+}
+
+function switchSheet(sheet){
+  if(sheet===activeSheet) return;
+  activeSheet=sheet;
+
+  // Update button styles
+  const bi=document.getElementById('btnSheetInv');
+  const bv=document.getElementById('btnSheetVend');
+  if(bi) bi.className='sh-btn'+(sheet==='investasi'?' sh-btn-on':'');
+  if(bv) bv.className='sh-btn'+(sheet==='vendor'?' sh-btn-on':'');
+
+  // Swap allUnits
+  if(sheet==='vendor'){
+    if(!vendorUnits.length){
+      showToast('⏳ Data vendor belum dimuat, refresh dulu...','err');
+      return;
+    }
+    allUnits=vendorUnits;
+  } else {
+    // reload investasi from scratch via loadData
+    loadData();
+    return;
+  }
+
+  // Reset filters
+  curFilter="ALL"; curPage=1; searchQ="";
+  filterBisnis=""; filterBisDet=""; filterRute=""; filterBranch="";
+  aFilterStatus=''; aFilterBisnis=''; aFilterBisDet=''; aFilterBranch=''; aFilterSearch='';
+  analitikFilter={jenis:null,status:null,branch:null,regional:null,tahun:null};
+  analitikFilter={jenis:null,status:null,branch:null,regional:null,tahun:null};
+
+  // Update topbar subtitle
+  const el2=document.getElementById("syncSub");
+  if(el2) el2.textContent=allUnits.length+' unit · KBM VENDOR';
+
+  // Re-render active tab
+  renderKPI();
+  if(curTab==='ws') renderWS();
+  if(curTab==='analitik') renderAnalitik();
+  if(curTab==='update') renderUpdateTab();
+}
+
 // ── KPI TAB ──────────────────────────────────────────────
 function renderKPI(){
   const total=allUnits.length;
-  const bySt={},byReg={},bdReg={};
+  const bySt={},byBranch={},bdBranch={};
   allUnits.forEach(u=>{
     bySt[u.status]=(bySt[u.status]||0)+1;
-    byReg[u.regional]=(byReg[u.regional]||0)+1;
-    if(u.status==="BREAKDOWN")bdReg[u.regional]=(bdReg[u.regional]||0)+1;
+    const br=u.branch||u.regional||'-';
+    byBranch[br]=(byBranch[br]||0)+1;
+    if(u.status==="BREAKDOWN")bdBranch[br]=(bdBranch[br]||0)+1;
   });
   const nR=bySt["READY"]||0,nB=bySt["BREAKDOWN"]||0,nM=bySt["MANGKRAK"]||0,nL=bySt["LAKA"]||0,nP=bySt["PROGRES"]||0;
   const pR=total?+(nR/total*100).toFixed(2):0, pB=total?+(nB/total*100).toFixed(2):0;
   const kR=pR>=KPI_R, kB=pB<=KPI_B;
   const gR=(pR-KPI_R).toFixed(1), gB=(pB-KPI_B).toFixed(1);
   const uGap=Math.ceil((KPI_R/100*total)-nR), bGap=Math.ceil((pB-KPI_B)/100*total);
-  const regSort=Object.entries(byReg).sort((a,b)=>b[1]-a[1]), maxR=regSort[0]?.[1]||1;
+  const branchSort=Object.entries(byBranch).sort((a,b)=>b[1]-a[1]);
   const pct=v=>total?(v/total*100).toFixed(1)+"%":"0%";
 
   document.getElementById("tab-kpi").innerHTML=`
@@ -451,16 +703,18 @@ function renderKPI(){
   <div class="sec-title fu fu3">Distribusi Armada</div>
   <div class="mgrid fu fu3">
     <div class="card"><h3>Komposisi Status</h3><div style="position:relative;height:195px"><canvas id="donutChart" role="img" aria-label="Komposisi status"></canvas></div></div>
-    <div class="card"><h3>Per Regional Office</h3>
-      <div class="rlist">${regSort.map(([reg,cnt])=>`
-        <div class="ri"><div class="rn" title="${reg}">${reg||'-'}</div><div class="rbw"><div class="rb" style="width:${cnt/maxR*100}%"></div></div><div class="rc">${cnt}</div><div class="rbd">${bdReg[reg]?`▲${bdReg[reg]} BD`:''}</div></div>`).join('')}
-      </div>
+    <div class="card" style="overflow:hidden"><h3>Per Branch Office</h3>
+      <div style="position:relative;height:195px"><canvas id="branchChart"></canvas></div>
     </div>
   </div>
   <div class="sec-title fu fu4">Daftar Unit</div>
-  <div class="tcard fu fu4">
+  <div id="branchFilterBadge" style="display:none;align-items:center;gap:.6rem;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:.55rem 1rem;margin-bottom:.75rem;">
+    <span style="font-size:.8rem;color:#1E40AF;font-weight:600" class="bfb-label"></span>
+    <button onclick="clearBranchFilter()" style="margin-left:auto;background:#1E2761;color:#fff;border:none;padding:.25rem .7rem;border-radius:6px;font-size:.72rem;cursor:pointer;font-family:inherit">✕ Hapus Filter Branch</button>
+  </div>
+  <div class="tcard fu fu4" id="tcard-section">
     <div class="fstrip" id="fstrip"></div>
-    <table><thead><tr><th>#</th><th>Nopol</th><th>Status</th><th>Regional</th><th>Tahun</th><th>Jenis</th><th>Merek</th><th>Bisnis</th></tr></thead>
+    <table><thead><tr><th>#</th><th>Nopol</th><th>Status</th><th>Branch Office</th><th>Tahun</th><th>Jenis</th><th>Regional</th><th>Bisnis</th><th>Detail Bisnis</th><th>Rute</th></tr></thead>
     <tbody id="tBody"></tbody></table>
     <div class="pgrow"><div class="pginfo" id="pgInfo"></div><div class="pgbtns" id="pgBtns"></div></div>
   </div>`;
@@ -472,6 +726,7 @@ function renderKPI(){
   },80));
 
   if(donutChart){donutChart.destroy();donutChart=null;}
+  if(branchChart){branchChart.destroy();branchChart=null;}
   const ctx=document.getElementById("donutChart");
   if(ctx) donutChart=new Chart(ctx,{
     type:"doughnut",
@@ -484,20 +739,186 @@ function renderKPI(){
         tooltip:{callbacks:{label:c=>`  ${c.raw} unit (${total?(c.raw/total*100).toFixed(1):0}%)`}}}}
   });
 
+  // Branch Office Bar Chart — with click-to-filter
+  if(branchChart){branchChart.destroy();branchChart=null;}
+  const ctxB=document.getElementById("branchChart");
+  if(ctxB && branchSort.length){
+    const bLabels=branchSort.map(([b])=>b);
+    const bTotal=branchSort.map(([,v])=>v);
+    const bBD=branchSort.map(([b])=>bdBranch[b]||0);
+    // count per status per branch
+    const byStatus=["READY","BREAKDOWN","MANGKRAK","LAKA","PROGRES"].reduce((acc,st)=>{
+      acc[st]=branchSort.map(([b])=>allUnits.filter(u=>(u.branch||u.regional||'-')===b&&u.status===st).length);
+      return acc;
+    },{});
+    const stColors={READY:"#10B981",BREAKDOWN:"#EF4444",MANGKRAK:"#F59E0B",LAKA:"#8B5CF6",PROGRES:"#3B82F6"};
+
+    branchChart=new Chart(ctxB,{
+      type:"bar",
+      data:{
+        labels:bLabels,
+        datasets:["READY","BREAKDOWN","MANGKRAK","LAKA","PROGRES"].map(st=>({
+          label:st,
+          data:byStatus[st],
+          backgroundColor:stColors[st]+"BB",
+          borderColor:stColors[st],
+          borderWidth:1,
+          stack:"s"
+        }))
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        onClick:(e,els)=>{
+          if(!els.length){
+            // click empty area → reset branch filter
+            filterBranch="";
+            const sb=document.getElementById("selBranch");
+            if(sb) sb.value="";
+            updateBranchHighlight(null);
+            curPage=1; applyFilter();
+            document.getElementById("tcard-section")?.scrollIntoView({behavior:"smooth",block:"start"});
+            return;
+          }
+          const li=els[0].dataIndex;
+          const clickedBranch=bLabels[li];
+          // toggle: click same branch again → reset
+          if(filterBranch===clickedBranch){
+            filterBranch="";
+            const sb=document.getElementById("selBranch");
+            if(sb) sb.value="";
+            updateBranchHighlight(null);
+          } else {
+            filterBranch=clickedBranch;
+            const sb=document.getElementById("selBranch");
+            if(sb) sb.value=clickedBranch;
+            updateBranchHighlight(li);
+          }
+          curPage=1; applyFilter();
+          // scroll ke tabel
+          setTimeout(()=>{
+            const tbl=document.getElementById("tcard-section")||document.querySelector(".tcard");
+            if(tbl) tbl.scrollIntoView({behavior:"smooth",block:"start"});
+          },100);
+        },
+        onHover:(e,els)=>{ e.native.target.style.cursor=els.length?"pointer":"default"; },
+        plugins:{
+          legend:{position:"bottom",labels:{color:"#6B7280",font:{size:9,family:"Inter"},padding:8,boxWidth:8}},
+          tooltip:{
+            callbacks:{
+              title:(items)=>[`📍 ${items[0].label}`, filterBranch===items[0].label?"(aktif — klik untuk reset)":"(klik untuk filter)"],
+              afterBody:(items)=>{
+                const br=bLabels[items[0].dataIndex];
+                const bd=bdBranch[br]||0;
+                const tot=bTotal[items[0].dataIndex];
+                const rd=byStatus["READY"][items[0].dataIndex];
+                return [`Total: ${tot} unit`,`Ready: ${rd} unit`,bd?`Breakdown: ${bd} unit`:""].filter(Boolean);
+              }
+            }
+          }
+        },
+        scales:{
+          x:{stacked:true,grid:{display:false},ticks:{color:"#6B7280",font:{size:9,family:"Inter"},maxRotation:35}},
+          y:{stacked:true,grid:{color:"rgba(0,0,0,.05)"},ticks:{color:"#6B7280",font:{size:9,family:"Inter"}},beginAtZero:true}
+        }
+      }
+    });
+
+    // Apply highlight if filter already active
+    const activeIdx=bLabels.indexOf(filterBranch);
+    if(activeIdx>=0) updateBranchHighlight(activeIdx);
+  }
+
+  function updateBranchHighlight(activeIdx){
+    if(!branchChart) return;
+    branchChart.data.datasets.forEach(ds=>{
+      ds.backgroundColor=ds.backgroundColor.replace(/[0-9A-Fa-f]{2}$/, activeIdx===null?"BB":"44");
+      if(activeIdx!==null){
+        // restore active bar to full color
+        ds.backgroundColor=ds.data.map((_,i)=>
+          i===activeIdx ? (ds.borderColor+"BB") : (ds.borderColor+"33")
+        );
+      }
+    });
+    branchChart.update("none");
+  }
+
+  // Also refresh highlight after applyFilter re-reads branch select
+  window._updateBranchHL=updateBranchHighlight;
+
   const filters=["ALL","READY","BREAKDOWN","MANGKRAK","LAKA","PROGRES"];
+  
+  // Build unique bisnis/bisnis_detail/rute options
+  const bisnisOpts   = [...new Set(allUnits.map(u=>u.bisnis).filter(Boolean))].sort();
+  const bisdetOpts   = [...new Set(allUnits.map(u=>u.bisnis_detail).filter(Boolean))].sort();
+  const ruteOpts     = [...new Set(allUnits.map(u=>u.rute).filter(Boolean))].sort();
+  const branchOpts   = [...new Set(allUnits.map(u=>u.branch).filter(Boolean))].sort();
+
   document.getElementById("fstrip").innerHTML=
     filters.map(f=>`<button class="fb ${curFilter===f?'on':''}" onclick="setFilter('${f}')">${f} (${f==="ALL"?total:bySt[f]||0})</button>`).join('')+
-    `<input class="sbox" placeholder="Cari nopol..." oninput="onSearch(this.value)" value="${searchQ}"/>`;
-  curFilter="ALL";curPage=1;searchQ="";applyFilter();
+    `<span style="width:1px;background:var(--border);height:20px;margin:0 4px;display:inline-block;vertical-align:middle"></span>`+
+    `<select class="sbox" style="width:auto;padding:.26rem .5rem" id="selBisnis" onchange="applyFilter()">
+      <option value="">Semua Bisnis</option>
+      ${bisnisOpts.map(b=>`<option value="${b}" ${filterBisnis===b?'selected':''}>${b}</option>`).join('')}
+    </select>`+
+    (bisdetOpts.length?`<select class="sbox" style="width:auto;padding:.26rem .5rem" id="selBisDet" onchange="applyFilter()">
+      <option value="">Semua Detail</option>
+      ${bisdetOpts.map(b=>`<option value="${b}" ${filterBisDet===b?'selected':''}>${b}</option>`).join('')}
+    </select>`:'<span id="selBisDet" style="display:none"></span>')+
+    (ruteOpts.length?`<select class="sbox" style="width:auto;padding:.26rem .5rem" id="selRute" onchange="applyFilter()">
+      <option value="">Semua Rute</option>
+      ${ruteOpts.map(r=>`<option value="${r}" ${filterRute===r?'selected':''}>${r}</option>`).join('')}
+    </select>`:'<span id="selRute" style="display:none"></span>')+
+    (branchOpts.length?`<select class="sbox" style="width:auto;padding:.26rem .5rem" id="selBranch" onchange="applyFilter()">
+      <option value="">Semua Branch</option>
+      ${branchOpts.map(b=>`<option value="${b}" ${filterBranch===b?'selected':''}>${b}</option>`).join('')}
+    </select>`:'<span id="selBranch" style="display:none"></span>')+
+    `<input class="sbox" style="width:150px" placeholder="Cari nopol..." oninput="onSearch(this.value)" value="${searchQ}"/>`;
+  curFilter="ALL";curPage=1;searchQ="";filterBisnis="";filterBisDet="";filterRute="";filterBranch="";applyFilter();
 }
 
 function setFilter(f){curFilter=f;curPage=1;document.querySelectorAll(".fb").forEach(b=>b.classList.toggle("on",b.textContent.trim().startsWith(f)));applyFilter();}
 function onSearch(v){searchQ=v.toLowerCase();curPage=1;applyFilter();}
 function applyFilter(){
+  const sb=document.getElementById("selBisnis");
+  const sd=document.getElementById("selBisDet");
+  const sr=document.getElementById("selRute");
+  const sbr=document.getElementById("selBranch");
+  if(sb&&sb.tagName==="SELECT") filterBisnis=sb.value;
+  if(sd&&sd.tagName==="SELECT") filterBisDet=sd.value;
+  if(sr&&sr.tagName==="SELECT") filterRute=sr.value;
+  if(sbr&&sbr.tagName==="SELECT") filterBranch=sbr.value;
   let d=allUnits;
-  if(curFilter!=="ALL")d=d.filter(u=>u.status===curFilter);
-  if(searchQ)d=d.filter(u=>u.nopol.toLowerCase().includes(searchQ)||u.regional.toLowerCase().includes(searchQ));
+  if(curFilter!=="ALL")  d=d.filter(u=>u.status===curFilter);
+  if(filterBisnis)       d=d.filter(u=>u.bisnis===filterBisnis);
+  if(filterBisDet)       d=d.filter(u=>u.bisnis_detail===filterBisDet);
+  if(filterRute)         d=d.filter(u=>u.rute===filterRute);
+  if(filterBranch)       d=d.filter(u=>u.branch===filterBranch);
+  if(searchQ)            d=d.filter(u=>
+    u.nopol.toLowerCase().includes(searchQ)||
+    u.regional.toLowerCase().includes(searchQ)||
+    u.jenis.toLowerCase().includes(searchQ)
+  );
   filteredUnits=d;renderTable();
+  // Update branch chart highlight
+  if(window._updateBranchHL && branchChart){
+    if(filterBranch){
+      const bData=branchChart.data.labels;
+      const idx=bData?bData.indexOf(filterBranch):-1;
+      window._updateBranchHL(idx>=0?idx:null);
+    } else {
+      window._updateBranchHL(null);
+    }
+  }
+  // Update branch filter badge
+  const badge=document.getElementById("branchFilterBadge");
+  if(badge){
+    if(filterBranch){
+      badge.style.display="flex";
+      badge.querySelector(".bfb-label").textContent="📍 "+filterBranch;
+    } else {
+      badge.style.display="none";
+    }
+  }
 }
 function renderTable(){
   const tot=filteredUnits.length,pages=Math.max(1,Math.ceil(tot/PG));
@@ -507,8 +928,13 @@ function renderTable(){
     <tr><td class="d" style="font-size:.65rem">${start+i+1}</td>
     <td style="font-weight:700;font-size:.75rem">${u.nopol}</td>
     <td><span class="pill p${u.status}">${u.status}</span></td>
-    <td class="d">${u.regional||'-'}</td><td class="d">${u.tahun||'-'}</td>
-    <td class="d">${u.jenis||'-'}</td><td class="d">${u.merek||'-'}</td><td class="d">${u.bisnis||'-'}</td></tr>`).join('');
+    <td class="d">${u.branch||'-'}</td><td class="d">${u.tahun||'-'}</td>
+    <td class="d">${u.jenis||'-'}</td>
+    <td class="d">${u.regional||'-'}</td>
+    <td class="d">${u.bisnis||'-'}</td>
+    <td class="d">${u.bisnis_detail||'-'}</td>
+    <td class="d">${u.rute||'-'}</td>
+    </tr>`).join('');
   document.getElementById("pgInfo").textContent=`${start+1}–${Math.min(start+PG,tot)} dari ${tot} unit`;
   let b=`<button class="pgb" onclick="goPage(${curPage-1})" ${curPage===1?"disabled":""}>←</button>`;
   for(let p=Math.max(1,curPage-2);p<=Math.min(pages,curPage+2);p++)
@@ -525,20 +951,32 @@ function renderWS(){
   const nInspek  = wsUnits.filter(u=>u.progress.includes("INSPEKSI")).length;
   const total    = wsUnits.length;
 
-  function dayClass(h){
-    if(h===null)return"";
-    if(h<=7)return"days-ok";
-    if(h<=14)return"days-warn";
-    return"days-over";
-  }
+  function dayClass(h){ if(h===null)return""; if(h<=7)return"days-ok"; if(h<=14)return"days-warn"; return"days-over"; }
   function dayLabel(h){ return h===null?"":h===0?"Hari ini":`${h} hari`; }
+
+  function cardClass(u){
+    if(u.progress.includes("PART"))return"wc-part";
+    if(u.progress.includes("INSPEKSI"))return"wc-inspeksi";
+    return"wc-proses";
+  }
+
+  function statusBadge(u){
+    const k = u.kbmStatus||"";
+    if(k==="MANGKRAK") return`<span class="wc-tag" style="background:#FFFBEB;color:#92400E;border-color:#FDE68A">⏸ Mangkrak</span>`;
+    if(k==="LAKA")     return`<span class="wc-tag" style="background:#F5F3FF;color:#5B21B6;border-color:#DDD6FE">🔴 Laka</span>`;
+    if(k==="PROGRES")  return`<span class="wc-tag" style="background:#EFF6FF;color:#1E40AF;border-color:#BFDBFE">🔄 Progres</span>`;
+    return`<span class="wc-tag" style="background:#FEF2F2;color:#991B1B;border-color:#FECACA">⚠ Breakdown</span>`;
+  }
 
   function kanbanCards(units){
     if(!units.length)return`<div class="kb-empty">Tidak ada unit</div>`;
     return units.map(u=>`
-      <div class="ws-card ${u.progress.includes('PART')?'wc-part':u.progress.includes('INSPEKSI')?'wc-inspeksi':'wc-proses'}">
-        <div class="wc-nopol">${u.nopol}</div>
-        <div class="wc-jenis">${u.kendaraan||'-'} ${u.bengkel?'· '+u.bengkel:''}</div>
+      <div class="ws-card ${cardClass(u)}">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem">
+          <div class="wc-nopol">${u.nopol}</div>
+          ${statusBadge(u)}
+        </div>
+        <div class="wc-jenis">${u.kendaraan||'-'}${u.bengkel?' · '+u.bengkel:''}</div>
         <div class="wc-meta">
           ${u.keluhan?`<span class="wc-tag">⚙ ${u.keluhan}</span>`:''}
           ${u.tgl?`<span class="wc-tag">📅 ${u.tgl}</span>`:''}
@@ -552,10 +990,20 @@ function renderWS(){
   const prosesUnits = wsUnits.filter(u=>u.progress.includes("PROSES")||u.progress.includes("PERBAIKAN"));
   const inspekUnits = wsUnits.filter(u=>u.progress.includes("INSPEKSI"));
 
+  // Count by KBM status for summary
+  const nBD   = wsUnits.filter(u=>u.kbmStatus==="BREAKDOWN").length;
+  const nMang = wsUnits.filter(u=>u.kbmStatus==="MANGKRAK").length;
+  const nLaka = wsUnits.filter(u=>u.kbmStatus==="LAKA").length;
+  const nProg = wsUnits.filter(u=>u.kbmStatus==="PROGRES").length;
+
   document.getElementById("tab-ws").innerHTML=`
   <div class="sec-title fu fu1">Ringkasan Workshop</div>
-  <div class="ws-summary fu fu1">
+  <div class="ws-summary fu fu1" style="grid-template-columns:repeat(auto-fill,minmax(105px,1fr))">
     <div class="ws-stat wss-total"><div class="ws-val">${total}</div><div class="ws-lbl">Total Unit</div></div>
+    <div class="ws-stat" style="background:#FEF2F2;border:1px solid #FECACA"><div class="ws-val" style="color:#991B1B">${nBD}</div><div class="ws-lbl" style="color:#991B1B">Breakdown</div></div>
+    <div class="ws-stat" style="background:#FFFBEB;border:1px solid #FDE68A"><div class="ws-val" style="color:#92400E">${nMang}</div><div class="ws-lbl" style="color:#92400E">Mangkrak</div></div>
+    <div class="ws-stat" style="background:#F5F3FF;border:1px solid #DDD6FE"><div class="ws-val" style="color:#5B21B6">${nLaka}</div><div class="ws-lbl" style="color:#5B21B6">Laka</div></div>
+    <div class="ws-stat" style="background:#EFF6FF;border:1px solid #BFDBFE"><div class="ws-val" style="color:#1E40AF">${nProg}</div><div class="ws-lbl" style="color:#1E40AF">Progres</div></div>
     <div class="ws-stat wss-part"><div class="ws-val">${nPart}</div><div class="ws-lbl">Menunggu Part</div></div>
     <div class="ws-stat wss-proses"><div class="ws-val">${nProses}</div><div class="ws-lbl">Proses Perbaikan</div></div>
     <div class="ws-stat wss-inspeksi"><div class="ws-val">${nInspek}</div><div class="ws-lbl">Menunggu Inspeksi</div></div>
@@ -575,7 +1023,7 @@ function renderWS(){
       ${kanbanCards(inspekUnits)}
     </div>
   </div>
-  ${total===0?`<div class="state-box"><div style="font-size:2rem;margin-bottom:.5rem">📋</div><h2>Sheet WORKSHOP masih kosong</h2><p style="font-size:.77rem">Isi data di sheet WORKSHOP pada Google Sheets kamu.<br/>Unit breakdown akan otomatis masuk setelah refresh.</p></div>`:''}`;
+  ${total===0?`<div class="state-box"><div style="font-size:2rem;margin-bottom:.5rem">📋</div><h2>Sheet WORKSHOP masih kosong</h2><p style="font-size:.77rem">Isi data di sheet WORKSHOP pada Google Sheets kamu.</p></div>`:''}`;
 }
 
 // ── PWA INSTALL ──────────────────────────────────────────
@@ -593,6 +1041,853 @@ window.addEventListener('appinstalled',()=>{ document.getElementById('installBan
 // ── SERVICE WORKER ───────────────────────────────────────
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+
+
+// ── DOWNLOAD PPT ─────────────────────────────────────────
+// Load PptxGenJS dynamically saat dibutuhkan
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (window.PptxGenJS) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Gagal load library PPT. Pastikan ada koneksi internet.'));
+    document.head.appendChild(s);
+  });
+}
+
+async function downloadPPT() {
+  const btn = document.getElementById("btnPPT");
+  if (btn) { btn.textContent = "⏳ Memuat..."; btn.disabled = true; }
+
+  try {
+    // Load PptxGenJS dari CDN
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/PptxGenJS/3.12.0/pptxgen.bundled.js');
+    await generatePPT();
+  } catch(e) {
+    // Fallback: coba dari unpkg
+    try {
+      await loadScript('https://unpkg.com/pptxgenjs@3.12.0/dist/pptxgen.bundled.js');
+      await generatePPT();
+    } catch(e2) {
+      alert("Gagal membuat PPT. Pastikan ada koneksi internet lalu coba lagi.\n\nError: " + e2.message);
+    }
+  } finally {
+    if (btn) { btn.textContent = "⬇ Download PPT"; btn.disabled = false; }
+  }
+}
+
+async function generatePPT() {
+  const pres = new PptxGenJS();
+  pres.layout = "LAYOUT_16x9";
+  const W=10, H=5.625;
+  const NAVY="1A2D5A", WHITE="FFFFFF", GREEN="065F46", GREEN2="10B981";
+  const RED="991B1B", RED2="EF4444", GRAY="6B7280", LGRAY="F4F6FA", DGRAY="1A1D23";
+
+  const total=allUnits.length;
+  const bySt={},byReg={},bdReg={};
+  allUnits.forEach(u=>{
+    bySt[u.status]=(bySt[u.status]||0)+1;
+    byReg[u.regional]=(byReg[u.regional]||0)+1;
+    if(u.status==="BREAKDOWN")bdReg[u.regional]=(bdReg[u.regional]||0)+1;
+  });
+  const nR=bySt["READY"]||0,nB=bySt["BREAKDOWN"]||0;
+  const nM=bySt["MANGKRAK"]||0,nL=bySt["LAKA"]||0,nP=bySt["PROGRES"]||0;
+  const pR=total?+(nR/total*100).toFixed(2):0;
+  const pB=total?+(nB/total*100).toFixed(2):0;
+  const kR=pR>=90,kB=pB<=10;
+  const now=new Date();
+  const dateStr=now.toLocaleDateString("id-ID",{day:"2-digit",month:"long",year:"numeric"});
+
+  // SLIDE 1 — Cover
+  {
+    const s=pres.addSlide();
+    s.background={color:NAVY};
+    s.addShape(pres.shapes.RECTANGLE,{x:0,y:0,w:0.15,h:H,fill:{color:"6366F1"},line:{color:"6366F1"}});
+    s.addText("Dashboard KPI Fleet",{x:0.5,y:1.5,w:9,h:0.9,fontSize:36,bold:true,color:WHITE,fontFace:"Calibri",align:"center"});
+    s.addText("KBM Investasi · PT Pos Logistik Indonesia",{x:0.5,y:2.55,w:9,h:0.45,fontSize:16,color:"C7D2FE",fontFace:"Calibri",align:"center"});
+    s.addShape(pres.shapes.RECTANGLE,{x:3.5,y:3.1,w:3,h:0.04,fill:{color:"6366F1"},line:{color:"6366F1"}});
+    s.addText(dateStr,{x:2.5,y:3.25,w:5,h:0.4,fontSize:13,color:"A5B4FC",fontFace:"Calibri",align:"center",italic:true});
+  }
+
+  // SLIDE 2 — Fleet Status
+  {
+    const s=pres.addSlide();
+    s.background={color:WHITE};
+    s.addShape(pres.shapes.RECTANGLE,{x:0,y:0,w:W,h:0.55,fill:{color:NAVY},line:{color:NAVY}});
+    s.addText("Fleet Status — KBM Investasi",{x:0.4,y:0.08,w:9.2,h:0.4,fontSize:16,bold:true,color:WHITE,fontFace:"Calibri",margin:0});
+    const cards=[
+      {l:"Ready",      v:nR,   p:pR.toFixed(1)+"%", bg:"E6FAF8",fg:"0F766E"},
+      {l:"Breakdown",  v:nB,   p:pB.toFixed(1)+"%", bg:"FEF2F2",fg:"991B1B"},
+      {l:"Mangkrak",   v:nM,   p:total?(nM/total*100).toFixed(1)+"%":"0%", bg:"FFFBEB",fg:"92400E"},
+      {l:"Laka",       v:nL,   p:total?(nL/total*100).toFixed(1)+"%":"0%", bg:"F5F3FF",fg:"5B21B6"},
+      {l:"Progres",    v:nP,   p:total?(nP/total*100).toFixed(1)+"%":"0%", bg:"EFF6FF",fg:"1E40AF"},
+      {l:"Total",      v:total,p:"100%", bg:LGRAY,fg:DGRAY},
+    ];
+    const cw=1.5,ch=1.5,cy=0.7,gap=0.08;
+    cards.forEach((c,i)=>{
+      const cx=0.35+i*(cw+gap);
+      s.addShape(pres.shapes.RECTANGLE,{x:cx,y:cy,w:cw,h:ch,fill:{color:c.bg},line:{color:c.bg}});
+      s.addText(String(c.v),{x:cx,y:cy+0.2,w:cw,h:0.7,fontSize:34,bold:true,color:c.fg,fontFace:"Calibri",align:"center",margin:0});
+      s.addText(c.l,{x:cx,y:cy+0.88,w:cw,h:0.3,fontSize:11,color:c.fg,fontFace:"Calibri",align:"center",margin:0});
+      s.addText(c.p,{x:cx,y:cy+1.15,w:cw,h:0.25,fontSize:10,color:GRAY,fontFace:"Calibri",align:"center",margin:0});
+    });
+    s.addChart(pres.charts.DOUGHNUT,[{name:"Status",labels:["Ready","Breakdown","Mangkrak","Laka","Progres"],values:[nR,nB,nM,nL,nP]}],{
+      x:0.3,y:2.4,w:4.5,h:2.9,chartColors:["10B981","EF4444","F59E0B","8B5CF6","3B82F6"],
+      showPercent:true,showLegend:true,legendPos:"b",legendFontSize:9,holeSize:55,chartArea:{fill:{color:WHITE}}
+    });
+    const regSort=Object.entries(byReg).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    const tdata=[
+      [{text:"Regional",options:{bold:true,color:WHITE,fill:{color:NAVY}}},{text:"Unit",options:{bold:true,color:WHITE,fill:{color:NAVY},align:"center"}},{text:"BD",options:{bold:true,color:WHITE,fill:{color:NAVY},align:"center"}}],
+      ...regSort.map(([reg,cnt],i)=>[
+        {text:reg||"-",options:{color:DGRAY,fill:{color:i%2===0?WHITE:LGRAY}}},
+        {text:String(cnt),options:{align:"center",color:DGRAY,fill:{color:i%2===0?WHITE:LGRAY}}},
+        {text:bdReg[reg]?String(bdReg[reg]):"-",options:{align:"center",bold:!!bdReg[reg],color:bdReg[reg]?"991B1B":GRAY,fill:{color:i%2===0?WHITE:LGRAY}}},
+      ])
+    ];
+    s.addTable(tdata,{x:5.0,y:2.4,w:4.7,h:2.9,colW:[2.8,1.0,0.9],border:{pt:0.5,color:"E5E7EB"},rowH:0.32,fontSize:10,fontFace:"Calibri"});
+  }
+
+  // SLIDE 3 — KPI
+  {
+    const s=pres.addSlide();
+    s.background={color:WHITE};
+    s.addShape(pres.shapes.RECTANGLE,{x:0,y:0,w:W,h:0.55,fill:{color:NAVY},line:{color:NAVY}});
+    s.addText("KPI Ketersediaan Armada",{x:0.4,y:0.08,w:9.2,h:0.4,fontSize:16,bold:true,color:WHITE,fontFace:"Calibri",margin:0});
+    // KPI 1
+    s.addShape(pres.shapes.RECTANGLE,{x:0.3,y:0.75,w:4.5,h:2.2,fill:{color:kR?"ECFDF5":"FEF2F2"},line:{color:kR?"A7F3D0":"FECACA"}});
+    s.addShape(pres.shapes.RECTANGLE,{x:0.3,y:0.75,w:0.06,h:2.2,fill:{color:kR?GREEN2:RED2},line:{color:kR?GREEN2:RED2}});
+    s.addText("KPI #1 — Rasio Unit Ready",{x:0.5,y:0.85,w:3.5,h:0.3,fontSize:10,bold:true,color:GRAY,fontFace:"Calibri",margin:0});
+    s.addText(kR?"✓ Tercapai":"✗ Tidak Tercapai",{x:3.0,y:0.83,w:1.7,h:0.32,fontSize:9,bold:true,color:kR?GREEN:RED,fontFace:"Calibri",align:"right",margin:0});
+    s.addText(pR.toFixed(1)+"%",{x:0.5,y:1.15,w:4.2,h:0.85,fontSize:52,bold:true,color:kR?GREEN2:RED2,fontFace:"Calibri",align:"center",margin:0});
+    s.addText("Target ≥ 90%",{x:0.5,y:1.98,w:4.2,h:0.28,fontSize:10,color:GRAY,fontFace:"Calibri",align:"center",margin:0});
+    const g1=(pR-90).toFixed(1),uG=Math.ceil((90/100*total)-nR);
+    s.addText(kR?`Surplus ${Math.abs(+g1).toFixed(1)}% di atas target`:`Kurang ${Math.abs(+g1).toFixed(1)}% — perlu +${uG} unit ready`,{x:0.5,y:2.3,w:4.2,h:0.5,fontSize:10,bold:true,color:kR?GREEN:RED,fontFace:"Calibri",align:"center",margin:0});
+    // KPI 2
+    s.addShape(pres.shapes.RECTANGLE,{x:5.2,y:0.75,w:4.5,h:2.2,fill:{color:kB?"ECFDF5":"FEF2F2"},line:{color:kB?"A7F3D0":"FECACA"}});
+    s.addShape(pres.shapes.RECTANGLE,{x:5.2,y:0.75,w:0.06,h:2.2,fill:{color:kB?GREEN2:RED2},line:{color:kB?GREEN2:RED2}});
+    s.addText("KPI #2 — Rasio Unit Breakdown",{x:5.4,y:0.85,w:3.5,h:0.3,fontSize:10,bold:true,color:GRAY,fontFace:"Calibri",margin:0});
+    s.addText(kB?"✓ Tercapai":"✗ Tidak Tercapai",{x:7.9,y:0.83,w:1.7,h:0.32,fontSize:9,bold:true,color:kB?GREEN:RED,fontFace:"Calibri",align:"right",margin:0});
+    s.addText(pB.toFixed(1)+"%",{x:5.4,y:1.15,w:4.2,h:0.85,fontSize:52,bold:true,color:kB?GREEN2:RED2,fontFace:"Calibri",align:"center",margin:0});
+    s.addText("Batas Maks ≤ 10%",{x:5.4,y:1.98,w:4.2,h:0.28,fontSize:10,color:GRAY,fontFace:"Calibri",align:"center",margin:0});
+    const g2=(pB-10).toFixed(1),bG=Math.ceil((pB-10)/100*total);
+    s.addText(kB?`Di bawah batas — aman ${Math.abs(+g2).toFixed(1)}%`:`Melebihi ${Math.abs(+g2).toFixed(1)}% — kurangi ${bG} unit`,{x:5.4,y:2.3,w:4.2,h:0.5,fontSize:10,bold:true,color:kB?GREEN:RED,fontFace:"Calibri",align:"center",margin:0});
+    s.addChart(pres.charts.BAR,[{name:"Unit",labels:["Ready","Breakdown","Mangkrak","Laka","Progres"],values:[nR,nB,nM,nL,nP]}],{
+      x:0.3,y:3.1,w:9.4,h:2.3,barDir:"col",chartColors:["10B981","EF4444","F59E0B","8B5CF6","3B82F6"],
+      showValue:true,dataLabelFontSize:10,dataLabelColor:DGRAY,showLegend:false,
+      catAxisLabelColor:GRAY,valAxisLabelColor:GRAY,valGridLine:{color:"E5E7EB"},
+      catGridLine:{style:"none"},chartArea:{fill:{color:WHITE}}
+    });
+  }
+
+  // SLIDE 4 — Workshop
+  if(wsUnits.length>0){
+    const s=pres.addSlide();
+    s.background={color:WHITE};
+    s.addShape(pres.shapes.RECTANGLE,{x:0,y:0,w:W,h:0.55,fill:{color:NAVY},line:{color:NAVY}});
+    s.addText("Workshop Tracking — Status Perbaikan Unit",{x:0.4,y:0.08,w:9.2,h:0.4,fontSize:16,bold:true,color:WHITE,fontFace:"Calibri",margin:0});
+    const nBD=wsUnits.filter(u=>u.kbmStatus==="BREAKDOWN").length;
+    const nMang=wsUnits.filter(u=>u.kbmStatus==="MANGKRAK").length;
+    const nLaka=wsUnits.filter(u=>u.kbmStatus==="LAKA").length;
+    const nProg=wsUnits.filter(u=>u.kbmStatus==="PROGRES").length;
+    const nPart=wsUnits.filter(u=>u.progress&&u.progress.includes("PART")).length;
+    const nProses=wsUnits.filter(u=>u.progress&&(u.progress.includes("PROSES")||u.progress.includes("PERBAIKAN"))).length;
+    const nInspek=wsUnits.filter(u=>u.progress&&u.progress.includes("INSPEKSI")).length;
+    const wCards=[
+      {l:"Total",v:wsUnits.length,bg:LGRAY,fg:DGRAY},
+      {l:"Breakdown",v:nBD,bg:"FEF2F2",fg:"991B1B"},
+      {l:"Mangkrak",v:nMang,bg:"FFFBEB",fg:"92400E"},
+      {l:"Laka",v:nLaka,bg:"F5F3FF",fg:"5B21B6"},
+      {l:"Progres",v:nProg,bg:"EFF6FF",fg:"1E40AF"},
+    ];
+    wCards.forEach((c,i)=>{
+      const cx=0.35+i*1.87,cy2=0.68;
+      s.addShape(pres.shapes.RECTANGLE,{x:cx,y:cy2,w:1.75,h:0.95,fill:{color:c.bg},line:{color:c.bg}});
+      s.addText(String(c.v),{x:cx,y:cy2+0.05,w:1.75,h:0.55,fontSize:26,bold:true,color:c.fg,fontFace:"Calibri",align:"center",margin:0});
+      s.addText(c.l,{x:cx,y:cy2+0.62,w:1.75,h:0.28,fontSize:9,color:c.fg,fontFace:"Calibri",align:"center",margin:0});
+    });
+    const pCards=[{l:"Menunggu Part",v:nPart,bg:"FEF2F2",fg:"991B1B"},{l:"Proses Perbaikan",v:nProses,bg:"FFFBEB",fg:"92400E"},{l:"Menunggu Inspeksi",v:nInspek,bg:"EFF6FF",fg:"1E40AF"}];
+    pCards.forEach((c,i)=>{
+      const cx=0.35+i*3.22;
+      s.addShape(pres.shapes.RECTANGLE,{x:cx,y:1.75,w:3.1,h:0.65,fill:{color:c.bg},line:{color:c.bg}});
+      s.addText(`${c.l}: ${c.v} unit`,{x:cx+0.1,y:1.82,w:2.9,h:0.5,fontSize:11,bold:true,color:c.fg,fontFace:"Calibri",valign:"middle",margin:0});
+    });
+    const wsHdr=[[
+      {text:"No",options:{bold:true,color:WHITE,fill:{color:NAVY},align:"center"}},
+      {text:"Nopol",options:{bold:true,color:WHITE,fill:{color:NAVY}}},
+      {text:"Jenis",options:{bold:true,color:WHITE,fill:{color:NAVY}}},
+      {text:"Regional/Bengkel",options:{bold:true,color:WHITE,fill:{color:NAVY}}},
+      {text:"Status KBM",options:{bold:true,color:WHITE,fill:{color:NAVY},align:"center"}},
+      {text:"Progress",options:{bold:true,color:WHITE,fill:{color:NAVY},align:"center"}},
+    ]];
+    const wsRows=wsUnits.slice(0,18).map((u,i)=>{
+      const bg=i%2===0?WHITE:LGRAY;
+      const sc=u.kbmStatus==="BREAKDOWN"?"991B1B":u.kbmStatus==="MANGKRAK"?"92400E":u.kbmStatus==="LAKA"?"5B21B6":"1E40AF";
+      const pc=u.progress&&u.progress.includes("PART")?"991B1B":u.progress&&u.progress.includes("INSPEKSI")?"1E40AF":"92400E";
+      return[
+        {text:String(i+1),options:{align:"center",color:GRAY,fill:{color:bg}}},
+        {text:u.nopol,options:{bold:true,color:DGRAY,fill:{color:bg}}},
+        {text:u.kendaraan||"-",options:{color:DGRAY,fill:{color:bg}}},
+        {text:u.bengkel||u.regional||"-",options:{color:DGRAY,fill:{color:bg}}},
+        {text:u.kbmStatus||"-",options:{align:"center",bold:true,color:sc,fill:{color:bg}}},
+        {text:u.progress||"-",options:{align:"center",color:pc,fill:{color:bg}}},
+      ];
+    });
+    s.addTable([...wsHdr,...wsRows],{x:0.3,y:2.5,w:9.4,h:2.9,colW:[0.4,1.5,1.2,1.9,1.5,2.9],border:{pt:0.5,color:"E5E7EB"},rowH:0.27,fontSize:9,fontFace:"Calibri"});
+    if(wsUnits.length>18) s.addText(`+ ${wsUnits.length-18} unit lainnya`,{x:0.3,y:5.48,w:9.4,h:0.16,fontSize:8,color:GRAY,fontFace:"Calibri",italic:true,margin:0});
+  }
+
+  const fn=`KPI_Fleet_${now.toLocaleDateString("id-ID",{day:"2-digit",month:"2-digit",year:"numeric"}).replace(/[/]/g,"-")}.pptx`;
+  await pres.writeFile({fileName:fn});
+}
+
+
+// ── ANALITIK TAB ─────────────────────────────────────────
+let chartRegJenis=null, chartJenisTahun=null, chartJenisStatus=null;
+// Active drill-down filter state
+let analitikFilter={jenis:null,status:null,branch:null,regional:null,tahun:null};
+// Global filter for analitik (separate from drill-down)
+let aFilterStatus='', aFilterBisnis='', aFilterBisDet='', aFilterBranch='', aFilterSearch='';
+
+function renderAnalitik(){
+  if(!allUnits.length) return;
+
+  const regionals = [...new Set(allUnits.map(u=>u.branch||u.regional||'-').filter(b=>b&&b!=='-'))].sort();
+  const jenis     = [...new Set(allUnits.map(u=>u.jenis||'-'))].sort();
+  const tahuns    = [...new Set(allUnits.map(u=>u.tahun||'-').filter(t=>t&&t!=='-'))].sort();
+  const statuses  = ['BREAKDOWN','LAKA','MANGKRAK','PROGRES','READY'];
+
+  function pivot(rowKey, colKey, rows){
+    const p={};
+    rows.forEach(u=>{
+      const r=u[rowKey]||'-', c=u[colKey]||'-';
+      if(!p[r]) p[r]={};
+      p[r][c]=(p[r][c]||0)+1;
+    });
+    return p;
+  }
+
+  const filteredForAnalitik = getAFiltered();
+
+  const pRegJenis    = pivot('branch','jenis', filteredForAnalitik);
+  const pJenisTahun  = pivot('jenis','tahun',    filteredForAnalitik);
+  const pJenisStatus = pivot('jenis','status',   filteredForAnalitik);
+
+  function rowTotal(piv,row){ return Object.values(piv[row]||{}).reduce((a,b)=>a+b,0); }
+  function colTotal(piv,col,rows){ return rows.reduce((s,r)=>(piv[r]?s+(piv[r][col]||0):s),0); }
+  function grandTotal(piv){ return Object.values(piv).reduce((s,obj)=>s+Object.values(obj).reduce((a,b)=>a+b,0),0); }
+
+  // Build pivot table with clickable cells
+  function buildTable(piv, rowKeys, colKeys, rowLabel, colLabel, filterType){
+    const gT=grandTotal(piv);
+    let html=`<div class="pivot-wrap"><table class="pivot-table">
+    <thead><tr>
+      <th class="row-hdr">${rowLabel} \ ${colLabel}</th>
+      ${colKeys.map(c=>`<th>${c}</th>`).join('')}
+      <th class="grand">Grand Total</th>
+    </tr></thead><tbody>`;
+    rowKeys.forEach(r=>{
+      const rt=rowTotal(piv,r);
+      html+=`<tr><td class="row-label">${r}</td>`;
+      colKeys.forEach(c=>{
+        const v=(piv[r]&&piv[r][c])||0;
+        const isActive = isFilterActive(filterType, r, c);
+        html+=v
+          ? `<td class="pv-cell${isActive?' pv-active':''}" onclick="drillDown('${filterType}','${r}','${c}')" style="cursor:pointer" title="Klik untuk filter: ${r} + ${c}">${v}</td>`
+          : `<td></td>`;
+      });
+      html+=`<td class="grand" onclick="drillDown('${filterType}','${r}',null)" style="cursor:pointer" title="Filter: ${r}">${rt}</td></tr>`;
+    });
+    html+=`<tr class="grand-row"><td class="row-label">Grand Total</td>`;
+    colKeys.forEach(c=>{ html+=`<td>${colTotal(piv,c,rowKeys)||''}</td>`; });
+    html+=`<td>${gT}</td></tr>`;
+    html+=`</tbody></table></div>`;
+    return html;
+  }
+
+  function isFilterActive(type, row, col){
+    const f=analitikFilter;
+    if(type==='regJenis')    return (f.branch||f.regional)===row && (col===null||f.jenis===col);
+    if(type==='jenisTahun')  return f.jenis===row    && (col===null||f.tahun===col);
+    if(type==='jenisStatus') return f.jenis===row    && (col===null||f.status===col);
+    return false;
+  }
+
+  // Rebuild pivot tables only (keep charts)
+  function rebuildPivots(){
+    const el=document.getElementById('pivot-area');
+    if(!el) return;
+    el.innerHTML=buildFilterBadge()+
+      `<div class="pivot-section"><h3>📊 Branch Office × Jenis Kendaraan</h3>${buildTable(pRegJenis,regionals,jenis,'Branch Office','Jenis Kendaraan','regJenis')}</div>`+
+      `<div class="pivot-section"><h3>📅 Jenis Kendaraan × Tahun Kendaraan</h3>${buildTable(pJenisTahun,jenis,tahuns,'Jenis Kendaraan','Tahun','jenisTahun')}</div>`+
+      `<div class="pivot-section"><h3>🚦 Jenis Kendaraan × Status</h3>${buildTable(pJenisStatus,jenis,statuses,'Jenis Kendaraan','Status','jenisStatus')}</div>`+
+      buildDrillTable();
+  }
+  window._rebuildPivots = rebuildPivots;
+
+  function buildFilterBadge(){
+    const f=analitikFilter;
+    const parts=[];
+    if(f.jenis)    parts.push(`Jenis: <strong>${f.jenis}</strong>`);
+    if(f.status)   parts.push(`Status: <strong>${f.status}</strong>`);
+    if(f.branch)   parts.push(`Branch: <strong>${f.branch}</strong>`);
+    if(f.regional) parts.push(`Regional: <strong>${f.regional}</strong>`);
+    if(f.tahun)    parts.push(`Tahun: <strong>${f.tahun}</strong>`);
+    if(!parts.length) return '';
+    return `<div class="drill-badge">
+      <span>🔍 Filter aktif: ${parts.join(' · ')}</span>
+      <button onclick="clearDrill()" class="drill-clear">✕ Hapus filter</button>
+    </div>`;
+  }
+
+  function buildDrillTable(){
+    const f=analitikFilter;
+    const hasFilter=f.jenis||f.status||f.regional||f.tahun;
+    if(!hasFilter) return '';
+    let filtered=allUnits;
+    if(f.jenis)    filtered=filtered.filter(u=>u.jenis===f.jenis);
+    if(f.status)   filtered=filtered.filter(u=>u.status===f.status);
+    if(f.branch)   filtered=filtered.filter(u=>(u.branch||u.regional||'-')===f.branch);
+    else if(f.regional) filtered=filtered.filter(u=>u.regional===f.regional);
+    if(f.tahun)    filtered=filtered.filter(u=>u.tahun===f.tahun);
+
+    if(!filtered.length) return `<div class="pivot-section"><div class="drill-empty">Tidak ada unit yang sesuai filter.</div></div>`;
+
+    const statusColor={READY:'#065F46',BREAKDOWN:'#991B1B',MANGKRAK:'#92400E',LAKA:'#5B21B6',PROGRES:'#1E40AF'};
+    const statusBg={READY:'#ECFDF5',BREAKDOWN:'#FEF2F2',MANGKRAK:'#FFFBEB',LAKA:'#F5F3FF',PROGRES:'#EFF6FF'};
+
+    return `<div class="pivot-section">
+      <h3>📋 Daftar Unit (${filtered.length} unit)</h3>
+      <div class="pivot-wrap" style="max-height:400px;overflow-y:auto">
+        <table class="pivot-table">
+          <thead><tr>
+            <th style="text-align:center">#</th>
+            <th style="text-align:left">Nopol</th>
+            <th>Status</th>
+            <th style="text-align:left">Regional</th>
+            <th>Tahun</th>
+            <th style="text-align:left">Jenis</th>
+            <th style="text-align:left">Bisnis</th>
+          </tr></thead>
+          <tbody>
+            ${filtered.map((u,i)=>`<tr>
+              <td style="color:#6B7280;font-size:.65rem">${i+1}</td>
+              <td style="font-weight:700;text-align:left">${u.nopol}</td>
+              <td><span style="padding:.15rem .5rem;border-radius:999px;font-size:.65rem;font-weight:700;background:${statusBg[u.status]||'#F3F4F6'};color:${statusColor[u.status]||'#374151'}">${u.status}</span></td>
+              <td style="text-align:left;color:#6B7280">${u.regional||'-'}</td>
+              <td style="color:#6B7280">${u.tahun||'-'}</td>
+              <td style="text-align:left;color:#6B7280">${u.jenis||'-'}</td>
+              <td style="text-align:left;color:#6B7280">${u.bisnis||'-'}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('tab-analitik').innerHTML=`
+  <!-- ANALITIK FILTER BAR -->
+  <div class="a-filterbar">
+    <div class="a-filter-left">
+      <span class="a-filter-label">Filter:</span>
+      ${['','READY','BREAKDOWN','MANGKRAK','LAKA','PROGRES'].map(s=>
+        `<button class="afb ${aFilterStatus===s?'on':''}" onclick="setAFilter('status','${s}')">${s||'Semua Status'}</button>`
+      ).join('')}
+    </div>
+    <div class="a-filter-right">
+      <select class="a-sel" id="aSelBranch" onchange="setAFilter('branch',this.value)">
+        <option value="">Semua Branch</option>
+        ${regionals.map(r=>`<option value="${r}" ${aFilterBranch===r?'selected':''}>${r}</option>`).join('')}
+      </select>
+      <select class="a-sel" id="aSelBisnis" onchange="setAFilter('bisnis',this.value)">
+        <option value="">Semua Bisnis</option>
+        ${[...new Set(allUnits.map(u=>u.bisnis).filter(Boolean))].sort().map(b=>`<option value="${b}" ${aFilterBisnis===b?'selected':''}>${b}</option>`).join('')}
+      </select>
+      <select class="a-sel" id="aSelBisDet" onchange="setAFilter('bisdet',this.value)">
+        <option value="">Semua Detail</option>
+        ${[...new Set(allUnits.map(u=>u.bisnis_detail).filter(Boolean))].sort().map(b=>`<option value="${b}" ${aFilterBisDet===b?'selected':''}>${b}</option>`).join('')}
+      </select>
+      <input class="a-search" id="aSearch" placeholder="Cari nopol / regional..." oninput="setAFilter('search',this.value)" value="${aFilterSearch}"/>
+      ${(aFilterStatus||aFilterBisnis||aFilterBisDet||aFilterBranch||aFilterSearch)?
+        `<button class="a-clear" onclick="clearAFilter()">✕ Reset</button>`:''
+      }
+    </div>
+  </div>
+  <div id="aFilterInfo" style="${(aFilterStatus||aFilterBisnis||aFilterBisDet||aFilterBranch||aFilterSearch)?'':'display:none'}" class="a-filter-info">
+    Menampilkan <strong>${getAFiltered().length}</strong> dari <strong>${allUnits.length}</strong> unit
+    ${aFilterStatus?`· Status: <strong>${aFilterStatus}</strong>`:''}
+    ${aFilterBranch?`· Branch: <strong>${aFilterBranch}</strong>`:''}
+    ${aFilterBisnis?`· Bisnis: <strong>${aFilterBisnis}</strong>`:''}
+    ${aFilterBisDet?`· Detail: <strong>${aFilterBisDet}</strong>`:''}
+    ${aFilterSearch?`· Cari: <strong>"${aFilterSearch}"</strong>`:''}
+  </div>
+
+  <div class="charts-analitik">
+    <div class="chart-card-a">
+      <h3>Distribusi per Regional Office <span style="font-size:.65rem;color:#9CA3AF;font-weight:400">(klik bar untuk filter)</span></h3>
+      <div style="position:relative;height:260px"><canvas id="chartRegJenis"></canvas></div>
+    </div>
+    <div class="chart-card-a">
+      <h3>Jenis Kendaraan per Status <span style="font-size:.65rem;color:#9CA3AF;font-weight:400">(klik bar untuk filter)</span></h3>
+      <div style="position:relative;height:260px"><canvas id="chartJenisStatus"></canvas></div>
+    </div>
+  </div>
+  <div class="charts-analitik">
+    <div class="chart-card-a" style="grid-column:1/-1">
+      <h3>Jenis Kendaraan per Tahun Pengadaan <span style="font-size:.65rem;color:#9CA3AF;font-weight:400">(klik bar untuk filter)</span></h3>
+      <div style="position:relative;height:240px"><canvas id="chartJenisTahun"></canvas></div>
+    </div>
+  </div>
+  <div id="pivot-area">
+    ${buildFilterBadge()}
+    <div class="pivot-section"><h3>📊 Branch Office × Jenis Kendaraan</h3>${buildTable(pRegJenis,regionals,jenis,'Branch Office','Jenis Kendaraan','regJenis')}</div>
+    <div class="pivot-section"><h3>📅 Jenis Kendaraan × Tahun Kendaraan</h3>${buildTable(pJenisTahun,jenis,tahuns,'Jenis Kendaraan','Tahun','jenisTahun')}</div>
+    <div class="pivot-section"><h3>🚦 Jenis Kendaraan × Status</h3>${buildTable(pJenisStatus,jenis,statuses,'Jenis Kendaraan','Status','jenisStatus')}</div>
+    ${buildDrillTable()}
+  </div>`;
+
+  // ── Draw Charts with click handlers ──────────────────
+  if(chartRegJenis){chartRegJenis.destroy();chartRegJenis=null;}
+  if(chartJenisTahun){chartJenisTahun.destroy();chartJenisTahun=null;}
+  if(chartJenisStatus){chartJenisStatus.destroy();chartJenisStatus=null;}
+
+  const COLORS=['#1E2761','#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6','#F97316','#06B6D4','#EC4899','#84CC16','#6366F1'];
+  const statusColors={'READY':'#10B981','BREAKDOWN':'#EF4444','MANGKRAK':'#F59E0B','LAKA':'#8B5CF6','PROGRES':'#3B82F6'};
+
+  const clickOpts=(onClickFn)=>({
+    onClick:(e,els,chart)=>{
+      if(!els.length) return;
+      const di=els[0].datasetIndex, li=els[0].index;
+      const ds=chart.data.datasets[di].label;
+      const lbl=chart.data.labels[li];
+      onClickFn(ds,lbl);
+    },
+    onHover:(e,els)=>{ e.native.target.style.cursor=els.length?'pointer':'default'; }
+  });
+
+  // Chart 1: Regional × Jenis — click → filter by regional + jenis
+  const ctx1=document.getElementById('chartRegJenis');
+  if(ctx1){
+    chartRegJenis=new Chart(ctx1,{
+      type:'bar',
+      data:{labels:regionals,datasets:jenis.map((j,i)=>({label:j,data:regionals.map(r=>(pRegJenis[r]&&pRegJenis[r][j])||0),backgroundColor:COLORS[i%COLORS.length]+'CC',borderColor:COLORS[i%COLORS.length],borderWidth:1}))},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        ...clickOpts((ds,lbl)=>{ analitikFilter={jenis:ds,status:null,branch:lbl,regional:null,tahun:null}; rebuildPivots(); scrollToPivot(); }),
+        plugins:{legend:{position:'bottom',labels:{font:{size:10,family:'Inter'},padding:8,boxWidth:10}},tooltip:{callbacks:{footer:()=>'Klik untuk filter'}}},
+        scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:10,family:'Inter'},maxRotation:35}},y:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10,family:'Inter'}},beginAtZero:true}}
+      }
+    });
+  }
+
+  // Chart 2: Jenis × Status — click → filter by jenis + status
+  const ctx2=document.getElementById('chartJenisStatus');
+  if(ctx2){
+    chartJenisStatus=new Chart(ctx2,{
+      type:'bar',
+      data:{labels:jenis,datasets:statuses.map(st=>({label:st,data:jenis.map(j=>(pJenisStatus[j]&&pJenisStatus[j][st])||0),backgroundColor:(statusColors[st]||'#6B7280')+'CC',borderColor:statusColors[st]||'#6B7280',borderWidth:1}))},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        ...clickOpts((ds,lbl)=>{ analitikFilter={jenis:lbl,status:ds,regional:null,tahun:null}; rebuildPivots(); scrollToPivot(); }),
+        plugins:{legend:{position:'bottom',labels:{font:{size:10,family:'Inter'},padding:8,boxWidth:10}},tooltip:{callbacks:{footer:()=>'Klik untuk filter'}}},
+        scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:10,family:'Inter'},maxRotation:35}},y:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10,family:'Inter'}},beginAtZero:true}}
+      }
+    });
+  }
+
+  // Chart 3: Jenis × Tahun — click → filter by jenis + tahun
+  const ctx3=document.getElementById('chartJenisTahun');
+  if(ctx3){
+    chartJenisTahun=new Chart(ctx3,{
+      type:'bar',
+      data:{labels:tahuns,datasets:jenis.map((j,i)=>({label:j,data:tahuns.map(t=>(pJenisTahun[j]&&pJenisTahun[j][t])||0),backgroundColor:COLORS[i%COLORS.length]+'CC',borderColor:COLORS[i%COLORS.length],borderWidth:1}))},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        ...clickOpts((ds,lbl)=>{ analitikFilter={jenis:ds,status:null,regional:null,tahun:String(lbl)}; rebuildPivots(); scrollToPivot(); }),
+        plugins:{legend:{position:'bottom',labels:{font:{size:10,family:'Inter'},padding:8,boxWidth:10}},tooltip:{callbacks:{footer:()=>'Klik untuk filter'}}},
+        scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:10,family:'Inter'}}},y:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:10,family:'Inter'}},beginAtZero:true}}
+      }
+    });
+  }
+
+  function scrollToPivot(){
+    setTimeout(()=>{ const el=document.getElementById('pivot-area'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); },100);
+  }
+}
+
+function drillDown(type, row, col){
+  if(type==='regJenis')    analitikFilter={branch:row, jenis:col||null, status:null, regional:null, tahun:null};
+  if(type==='jenisTahun')  analitikFilter={jenis:row,   tahun:col||null, status:null, regional:null};
+  if(type==='jenisStatus') analitikFilter={jenis:row,   status:col||null, regional:null, tahun:null};
+  const el=document.getElementById('pivot-area');
+  if(el){
+    // Rebuild pivots — re-render analitik pivots only
+    showTab('analitik');
+  }
+}
+
+function clearDrill(){
+  analitikFilter={jenis:null,status:null,branch:null,regional:null,tahun:null};
+  renderAnalitik();
+}
+
+function setAFilter(type, val){
+  if(type==='status')   aFilterStatus=val;
+  if(type==='bisnis')   aFilterBisnis=val;
+  if(type==='bisdet')   aFilterBisDet=val;
+  if(type==='branch')   aFilterBranch=val;
+  if(type==='search')   aFilterSearch=val.toLowerCase();
+  // Reset drill-down when global filter changes
+  analitikFilter={jenis:null,status:null,branch:null,regional:null,tahun:null};
+  renderAnalitik();
+}
+
+function setFilterBranch(val){filterBranch=val;curPage=1;applyFilter();}
+function clearBranchFilter(){
+  filterBranch="";
+  const sb=document.getElementById("selBranch");
+  if(sb) sb.value="";
+  if(window._updateBranchHL) window._updateBranchHL(null);
+  curPage=1; applyFilter();
+}
+function clearAFilter(){
+  aFilterStatus=''; aFilterBisnis=''; aFilterBisDet=''; aFilterBranch=''; aFilterSearch='';
+  analitikFilter={jenis:null,status:null,branch:null,regional:null,tahun:null};
+  renderAnalitik();
+}
+
+
+// ── UPDATE STATUS TAB ────────────────────────────────────────────────────────
+let updSelected = null; // currently selected unit
+let updNewStatus = null;
+let updHistory = [];    // local session history
+
+function renderUpdateTab(){
+  const el = document.getElementById('tab-update');
+  if(!el) return;
+
+  // Build branch options
+  const branches = [...new Set(allUnits.map(u=>u.branch||u.regional||'-').filter(b=>b&&b!=='-'))].sort();
+
+  el.innerHTML = `
+  <div class="upd-wrap">
+
+    <!-- SEARCH BOX -->
+    <div class="upd-search-box">
+      <h3>🔍 Cari Unit</h3>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.65rem;">
+        <select id="updSelBranch" onchange="filterUpdUnits()" style="flex:1;padding:.55rem .7rem;border-radius:9px;border:1.5px solid var(--border);font-size:.82rem;font-family:inherit;background:var(--bg);color:var(--text);outline:none;min-width:130px;">
+          <option value="">Semua Branch</option>
+          ${branches.map(b=>`<option value="${b}">${b}</option>`).join('')}
+        </select>
+        <select id="updSelStatus" onchange="filterUpdUnits()" style="flex:1;padding:.55rem .7rem;border-radius:9px;border:1.5px solid var(--border);font-size:.82rem;font-family:inherit;background:var(--bg);color:var(--text);outline:none;min-width:120px;">
+          <option value="">Semua Status</option>
+          ${['READY','BREAKDOWN','MANGKRAK','LAKA','PROGRES'].map(s=>`<option value="${s}">${s}</option>`).join('')}
+        </select>
+      </div>
+      <input class="upd-input" id="updSearch" type="text" placeholder="Ketik nopol, branch, atau jenis..." oninput="filterUpdUnits()"/>
+      <div class="upd-results" id="updResults">
+        <div class="empty-hist">Ketik nopol atau pilih filter di atas</div>
+      </div>
+    </div>
+
+    <!-- EDIT FORM -->
+    <div class="upd-form" id="updForm" style="display:none">
+      <div class="upd-form-title">✏️ Update Status Unit</div>
+
+      <!-- Unit Info Card -->
+      <div class="upd-unit-card" id="updUnitCard"></div>
+
+      <!-- Status Buttons -->
+      <div class="upd-form-title" style="margin-bottom:.6rem">Pilih Status Baru:</div>
+      <div class="upd-status-grid" id="updStatusGrid">
+        ${[
+          {s:'READY',    icon:'✅', label:'READY'},
+          {s:'BREAKDOWN',icon:'🔴', label:'BREAKDOWN'},
+          {s:'MANGKRAK', icon:'🟡', label:'MANGKRAK'},
+          {s:'LAKA',     icon:'🟣', label:'LAKA'},
+          {s:'PROGRES',  icon:'🔵', label:'PROGRES'},
+        ].map(st=>`
+          <button class="upd-st-btn" id="stBtn-${st.s}" onclick="selectNewStatus('${st.s}')">
+            <span class="st-icon">${st.icon}</span>
+            <span class="st-label">${st.label}</span>
+          </button>`).join('')}
+        <button class="upd-st-btn" onclick="cancelUpd()" style="border-color:#E5E7EB">
+          <span class="st-icon">↩️</span>
+          <span class="st-label" style="color:#6B7280">BATAL</span>
+        </button>
+      </div>
+
+      <!-- Workshop fields (shown when non-READY selected) -->
+      <div class="upd-ws-section" id="updWsSection">
+        <div class="upd-ws-title">📋 Data Workshop (opsional)</div>
+        <div class="upd-field">
+          <label>Keluhan / Kerusakan</label>
+          <textarea id="updKeluhan" rows="2" placeholder="Contoh: Mesin overheat, ban bocor..."></textarea>
+        </div>
+        <div class="upd-field">
+          <label>Nama Bengkel</label>
+          <input type="text" id="updBengkel" placeholder="Contoh: Bengkel Astra, Workshop Internal..."/>
+        </div>
+        <div class="upd-field">
+          <label>Estimasi Selesai</label>
+          <input type="date" id="updEstSelesai"/>
+        </div>
+      </div>
+
+      <!-- Notes & updated by -->
+      <div class="upd-field">
+        <label>Catatan (opsional)</label>
+        <input type="text" id="updNotes" placeholder="Keterangan tambahan..."/>
+      </div>
+      <div class="upd-field">
+        <label>Diupdate oleh</label>
+        <input type="text" id="updBy" placeholder="Nama Anda..." value="" id="updByInput"/>
+      </div>
+
+      <button class="btn-submit" id="btnSubmitUpd" onclick="submitUpdate()" disabled>
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        Simpan Perubahan
+      </button>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="upd-history">
+      <h3>📝 Riwayat Update (sesi ini)</h3>
+      <div id="updHistoryList"><div class="empty-hist">Belum ada update pada sesi ini</div></div>
+    </div>
+
+  </div>
+  <div class="upd-toast" id="updToast"></div>`;
+
+  filterUpdUnits();
+  try{const el=document.getElementById('updByInput');if(el)el.value=localStorage.getItem('updBy')||'';}catch(e){}
+}
+
+function filterUpdUnits(){
+  const q = (document.getElementById('updSearch')?.value||'').toLowerCase();
+  const branch = document.getElementById('updSelBranch')?.value||'';
+  const status = document.getElementById('updSelStatus')?.value||'';
+  const el = document.getElementById('updResults');
+  if(!el) return;
+
+  let filtered = allUnits;
+  if(branch) filtered = filtered.filter(u=>(u.branch||u.regional||'')===branch);
+  if(status) filtered = filtered.filter(u=>u.status===status);
+  if(q)      filtered = filtered.filter(u=>
+    u.nopol.toLowerCase().includes(q)||
+    (u.branch||u.regional||'').toLowerCase().includes(q)||
+    (u.jenis||'').toLowerCase().includes(q)
+  );
+
+  const show = filtered.slice(0,30);
+  if(!show.length){
+    el.innerHTML='<div class="empty-hist">Tidak ada unit yang sesuai</div>';
+    return;
+  }
+
+  const stColor = {READY:'#10B981',BREAKDOWN:'#EF4444',MANGKRAK:'#F59E0B',LAKA:'#8B5CF6',PROGRES:'#3B82F6'};
+  el.innerHTML = show.map(u=>`
+    <div class="upd-result-item ${updSelected?.nopol===u.nopol?'active':''}" onclick="selectUnit('${u.nopol}')">
+      <div>
+        <div class="upd-nopol">${u.nopol}</div>
+        <div class="upd-meta">${u.branch||u.regional||'-'} · ${u.jenis||'-'} · ${u.tahun||'-'}</div>
+      </div>
+      <span style="padding:.2rem .6rem;border-radius:999px;font-size:.65rem;font-weight:700;background:${stColor[u.status]}22;color:${stColor[u.status]}">${u.status}</span>
+    </div>`).join('');
+
+  if(show.length===30 && filtered.length>30){
+    el.innerHTML += `<div style="text-align:center;color:var(--text3);font-size:.75rem;padding:.5rem">...dan ${filtered.length-30} unit lainnya. Persempit pencarian.</div>`;
+  }
+}
+
+function selectUnit(nopol){
+  updSelected = allUnits.find(u=>u.nopol===nopol);
+  if(!updSelected) return;
+  updNewStatus = null;
+
+  // Show form
+  const form = document.getElementById('updForm');
+  if(form) form.style.display='block';
+
+  // Fill unit card
+  const stColor = {READY:'#10B981',BREAKDOWN:'#EF4444',MANGKRAK:'#F59E0B',LAKA:'#8B5CF6',PROGRES:'#3B82F6'};
+  const u = updSelected;
+  document.getElementById('updUnitCard').innerHTML = `
+    <div class="uc-row" style="grid-column:1/-1">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.35rem">
+        <span style="font-size:1.1rem;font-weight:800;color:var(--text)">${u.nopol}</span>
+        <span style="padding:.2rem .65rem;border-radius:999px;font-size:.7rem;font-weight:700;background:${stColor[u.status]}22;color:${stColor[u.status]}">${u.status}</span>
+      </div>
+    </div>
+    <div class="uc-row"><div class="uc-label">Branch</div><div class="uc-val">${u.branch||u.regional||'-'}</div></div>
+    <div class="uc-row"><div class="uc-label">Jenis</div><div class="uc-val">${u.jenis||'-'}</div></div>
+    <div class="uc-row"><div class="uc-label">Tahun</div><div class="uc-val">${u.tahun||'-'}</div></div>
+    <div class="uc-row"><div class="uc-label">Bisnis</div><div class="uc-val">${u.bisnis||'-'}</div></div>`;
+
+  // Reset status buttons
+  ['READY','BREAKDOWN','MANGKRAK','LAKA','PROGRES'].forEach(s=>{
+    const btn = document.getElementById('stBtn-'+s);
+    if(!btn) return;
+    btn.className = 'upd-st-btn' + (s===u.status?' disabled-st':'');
+    btn.disabled = (s===u.status);
+  });
+
+  document.getElementById('btnSubmitUpd').disabled = true;
+  document.getElementById('updWsSection').classList.remove('show');
+
+  // Highlight selected in list
+  filterUpdUnits();
+
+  // Scroll to form
+  setTimeout(()=>form?.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+function selectNewStatus(st){
+  if(!updSelected || st===updSelected.status) return;
+  updNewStatus = st;
+
+  // Update button styles
+  ['READY','BREAKDOWN','MANGKRAK','LAKA','PROGRES'].forEach(s=>{
+    const btn = document.getElementById('stBtn-'+s);
+    if(!btn) return;
+    btn.className = 'upd-st-btn';
+    if(s === updSelected.status) btn.className += ' disabled-st';
+    else if(s === st) btn.className += ' sel-'+s;
+  });
+
+  // Show workshop fields if non-READY
+  const wsSection = document.getElementById('updWsSection');
+  if(wsSection) wsSection.className = 'upd-ws-section' + (['BREAKDOWN','MANGKRAK','LAKA','PROGRES'].includes(st)?' show':'');
+
+  document.getElementById('btnSubmitUpd').disabled = false;
+}
+
+function cancelUpd(){
+  updSelected = null;
+  updNewStatus = null;
+  const form = document.getElementById('updForm');
+  if(form) form.style.display='none';
+  filterUpdUnits();
+}
+
+async function submitUpdate(){
+  if(!updSelected || !updNewStatus) return;
+  const btn = document.getElementById('btnSubmitUpd');
+  const updBy = document.getElementById('updBy')?.value||'';
+  const notes = document.getElementById('updNotes')?.value||'';
+  const keluhan = document.getElementById('updKeluhan')?.value||'';
+  const bengkel = document.getElementById('updBengkel')?.value||'';
+  const estSelesai = document.getElementById('updEstSelesai')?.value||'';
+
+  // Save name for next time
+  if(updBy) try{localStorage.setItem('updBy',updBy);}catch(e){}
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px;margin:0"></div> Menyimpan...';
+
+  try {
+    // 1. Update status
+    const r1 = await fetch(API_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        action:'updateStatus',
+        nopol: updSelected.nopol,
+        newStatus: updNewStatus,
+        updatedBy: updBy,
+        notes: notes
+      })
+    });
+    const d1 = await r1.json();
+    if(!d1.ok) throw new Error(d1.msg);
+
+    // 2. Update workshop data if needed
+    if(['BREAKDOWN','MANGKRAK','LAKA','PROGRES'].includes(updNewStatus) && (keluhan||bengkel||estSelesai)){
+      await fetch(API_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          action:'updateWorkshop',
+          nopol: updSelected.nopol,
+          progress: updNewStatus==='BREAKDOWN'?'MENUNGGU PART':updNewStatus==='LAKA'?'MENUNGGU INSPEKSI':'PROSES PERBAIKAN',
+          keluhan, bengkel, estSelesai
+        })
+      });
+    }
+
+    // Update local data immediately
+    const u = allUnits.find(u2=>u2.nopol===updSelected.nopol);
+    const oldStatus = updSelected.status;
+    if(u) u.status = updNewStatus;
+
+    // Add to history
+    updHistory.unshift({
+      nopol: updSelected.nopol,
+      from: oldStatus,
+      to: updNewStatus,
+      by: updBy||'—',
+      time: new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})
+    });
+    renderHistory();
+
+    showToast('✅ '+updSelected.nopol+' → '+updNewStatus, 'ok');
+
+    // Reset form
+    cancelUpd();
+
+    // Refresh dashboard data in background
+    setTimeout(()=>loadData(), 1500);
+
+  } catch(err) {
+    showToast('❌ Gagal: '+err.message, 'err');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Simpan Perubahan';
+  }
+}
+
+function renderHistory(){
+  const el = document.getElementById('updHistoryList');
+  if(!el) return;
+  if(!updHistory.length){
+    el.innerHTML='<div class="empty-hist">Belum ada update pada sesi ini</div>';
+    return;
+  }
+  const stColor={READY:'#10B981',BREAKDOWN:'#EF4444',MANGKRAK:'#F59E0B',LAKA:'#8B5CF6',PROGRES:'#3B82F6'};
+  el.innerHTML = updHistory.map(h=>`
+    <div class="hist-item">
+      <div class="hi-nopol">${h.nopol}</div>
+      <div class="hi-change">
+        <span style="color:${stColor[h.from]||'#6B7280'};font-weight:600">${h.from}</span>
+        <span style="color:#9CA3AF"> → </span>
+        <span style="color:${stColor[h.to]||'#6B7280'};font-weight:600">${h.to}</span>
+        ${h.by&&h.by!=='—'?`<span style="color:#9CA3AF"> · oleh ${h.by}</span>`:''}
+      </div>
+      <div class="hi-time">⏱ ${h.time}</div>
+    </div>`).join('');
+}
+
+function showToast(msg, type='ok'){
+  const t = document.getElementById('updToast');
+  if(!t) return;
+  t.textContent = msg;
+  t.className = 'upd-toast show '+(type||'');
+  setTimeout(()=>t.className='upd-toast', 3000);
+}
+
+function getAFiltered(){
+  let d=allUnits;
+  if(aFilterStatus)   d=d.filter(u=>u.status===aFilterStatus);
+  if(aFilterBisnis)   d=d.filter(u=>u.bisnis===aFilterBisnis);
+  if(aFilterBisDet)   d=d.filter(u=>u.bisnis_detail===aFilterBisDet);
+  if(aFilterBranch)   d=d.filter(u=>(u.branch||u.regional||'-')===aFilterBranch);
+  if(aFilterSearch)   d=d.filter(u=>
+    u.nopol.toLowerCase().includes(aFilterSearch)||
+    (u.branch||u.regional||'').toLowerCase().includes(aFilterSearch)||
+    u.jenis.toLowerCase().includes(aFilterSearch)
+  );
+  return d;
 }
 
 loadData();
