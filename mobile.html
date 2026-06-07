@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Fleet Mobile"/>
+<meta name="theme-color" content="#0F172A"/>
+<title>Fleet Mobile — PT Pos Logistik</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0F172A; --navy2:#1E293B; --navy3:#334155;
+  --indigo:#4F46E5; --indigo2:#6366F1; --indigo3:#EEF2FF;
+  --green:#10B981; --green2:#ECFDF5; --green3:#065F46;
+  --red:#EF4444; --red2:#FEF2F2; --red3:#991B1B;
+  --amber:#F59E0B; --amber2:#FFFBEB; --amber3:#92400E;
+  --blue:#3B82F6; --blue2:#EFF6FF; --blue3:#1E40AF;
+  --purp:#8B5CF6; --purp2:#F5F3FF; --purp3:#5B21B6;
+  --sl:#64748B; --sl2:#F1F5F9; --sl3:#E2E8F0;
+  --white:#FFFFFF; --text:#0F172A; --text2:#475569; --text3:#94A3B8;
+  --r:16px; --r2:12px; --r3:8px;
+  --sh:0 2px 12px rgba(0,0,0,.08);
+  --ff:'DM Sans',sans-serif;
+  --safe:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;font-family:var(--ff);background:var(--sl2);color:var(--text);}
+
+/* SCREENS */
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--sl2);overflow:hidden;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateY(8px);}
+.screen.active{opacity:1;pointer-events:all;transform:none;}
+
+/* LOGIN */
+#sc-login{background:var(--navy);justify-content:center;align-items:center;padding:1.5rem;}
+.login-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.login-bg::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#4F46E544,transparent 70%);top:-80px;right:-60px;}
+.login-card{position:relative;z-index:10;width:100%;max-width:360px;}
+.login-logo{display:flex;align-items:center;gap:.65rem;margin-bottom:2rem;}
+.login-logo-icon{width:48px;height:48px;border-radius:14px;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px #4F46E566;}
+.login-logo h1{font-size:1.1rem;font-weight:800;color:var(--white);}
+.login-logo p{font-size:.7rem;color:#94A3B8;}
+.login-title{font-size:1.5rem;font-weight:800;color:var(--white);margin-bottom:.25rem;}
+.login-sub{font-size:.8rem;color:#94A3B8;margin-bottom:1.5rem;}
+.field-lbl{font-size:.7rem;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.6px;margin-bottom:.4rem;display:block;}
+.field-inp{width:100%;padding:.8rem 1rem;border-radius:var(--r2);border:1.5px solid #334155;background:#1E293B;color:var(--white);font-size:.9rem;font-family:var(--ff);outline:none;margin-bottom:1rem;}
+.field-inp:focus{border-color:var(--indigo2);}
+.pin-display{display:flex;gap:.5rem;justify-content:center;margin:.75rem 0;}
+.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid #475569;transition:all .15s;}
+.pin-dot.on{background:var(--indigo2);border-color:var(--indigo2);}
+.pin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem;}
+.pin-btn{padding:.9rem .4rem;border-radius:var(--r2);background:#1E293B;border:1.5px solid #334155;color:var(--white);font-size:1.3rem;font-weight:600;cursor:pointer;font-family:var(--ff);touch-action:manipulation;transition:all .12s;}
+.pin-btn:active{background:#334155;transform:scale(.93);}
+.pin-btn.sym{font-size:.9rem;color:#94A3B8;}
+.btn-login{width:100%;padding:.9rem;border-radius:var(--r2);border:none;background:var(--indigo);color:var(--white);font-size:.95rem;font-weight:700;cursor:pointer;font-family:var(--ff);}
+.btn-login:disabled{background:#334155;color:#64748B;}
+.login-err{background:#7F1D1D22;border:1px solid #EF444444;border-radius:var(--r2);padding:.6rem 1rem;color:#FCA5A5;font-size:.78rem;text-align:center;margin-bottom:.75rem;display:none;}
+
+/* TOPBAR */
+.topbar{background:var(--white);padding:.85rem 1rem;display:flex;align-items:center;gap:.65rem;border-bottom:1px solid var(--sl3);flex-shrink:0;z-index:10;}
+.topbar-back{width:34px;height:34px;border-radius:9px;background:var(--sl2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--text);flex-shrink:0;}
+.topbar-info{flex:1;}
+.topbar-title{font-size:.92rem;font-weight:700;color:var(--text);}
+.topbar-sub{font-size:.67rem;color:var(--text3);margin-top:.05rem;}
+.topbar-av{width:34px;height:34px;border-radius:9px;background:var(--indigo);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:var(--white);cursor:pointer;flex-shrink:0;}
+
+/* SCROLL */
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1rem 1rem 1.5rem;}
+.scroll::-webkit-scrollbar{display:none;}
+
+/* BOTTOM NAV */
+.bnav{background:var(--white);border-top:1px solid var(--sl3);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:var(--safe);flex-shrink:0;}
+.bn{display:flex;flex-direction:column;align-items:center;padding:.55rem .3rem .5rem;cursor:pointer;border:none;background:none;font-family:var(--ff);position:relative;}
+.bn span{font-size:.58rem;font-weight:600;color:var(--text3);margin-top:.22rem;}
+.bn svg{color:var(--text3);}
+.bn.on svg{color:var(--indigo);}
+.bn.on span{color:var(--indigo);}
+.bn-dot{position:absolute;top:.4rem;right:calc(50% - 12px);width:7px;height:7px;border-radius:50%;background:var(--red);border:2px solid var(--white);}
+
+/* FAB */
+.fab{position:fixed;bottom:calc(68px + var(--safe) + .75rem);right:1rem;width:50px;height:50px;border-radius:15px;background:var(--indigo);color:#fff;border:none;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 18px #4F46E566;display:none;align-items:center;justify-content:center;z-index:100;touch-action:manipulation;}
+
+/* CARDS */
+.card{background:var(--white);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:.75rem;box-shadow:var(--sh);}
+.card-title{font-size:.67rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem;}
+
+/* KPI HERO */
+.kpi-h{background:var(--navy);border-radius:var(--r);padding:1.1rem 1.2rem;margin-bottom:.8rem;position:relative;overflow:hidden;}
+.kpi-h::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#4F46E522,transparent 70%);top:-60px;right:-40px;pointer-events:none;}
+.kpi-h-lbl{font-size:.63rem;color:#94A3B8;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.25rem;}
+.kpi-h-val{font-size:2.4rem;font-weight:800;color:var(--white);letter-spacing:-1px;line-height:1;}
+.kpi-h-sub{font-size:.72rem;color:#94A3B8;margin-top:.22rem;}
+.kpi-badge{padding:.22rem .65rem;border-radius:999px;font-size:.63rem;font-weight:700;}
+.badge-ok{background:#10B98122;color:#10B981;}
+.badge-fail{background:#EF444422;color:#EF4444;}
+.kpi-bar-wrap{height:5px;background:#FFFFFF22;border-radius:999px;margin-top:.8rem;overflow:hidden;}
+.kpi-bar{height:100%;border-radius:999px;transition:width .6s;}
+.kpi-note{margin-top:.65rem;border-radius:8px;padding:.45rem .7rem;font-size:.7rem;}
+.kpi-note.fail{background:#EF444422;color:#FCA5A5;}
+.kpi-note.ok{background:#10B98122;color:#6EE7B7;}
+
+/* STATUS GRID */
+.st-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-bottom:.8rem;}
+.st-c{border-radius:var(--r2);padding:.75rem .5rem;text-align:center;}
+.st-v{font-size:1.55rem;font-weight:800;line-height:1;}
+.st-l{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-top:.15rem;}
+.st-p{font-size:.58rem;margin-top:.08rem;opacity:.7;}
+
+/* UNIT LIST */
+.u-item{background:var(--white);border-radius:var(--r2);padding:.8rem 1rem;margin-bottom:.45rem;display:flex;align-items:center;gap:.7rem;box-shadow:var(--sh);cursor:pointer;transition:transform .12s;}
+.u-item:active{transform:scale(.98);}
+.u-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.u-info{flex:1;min-width:0;}
+.u-nopol{font-size:.88rem;font-weight:700;}
+.u-meta{font-size:.66rem;color:var(--text3);margin-top:.1rem;}
+.u-bisnis{font-size:.6rem;color:var(--indigo2);margin-top:.08rem;}
+.pill{padding:.18rem .52rem;border-radius:999px;font-size:.6rem;font-weight:700;white-space:nowrap;flex-shrink:0;}
+.p-READY{background:var(--green2);color:var(--green3);}
+.p-BREAKDOWN{background:var(--red2);color:var(--red3);}
+.p-MANGKRAK{background:var(--amber2);color:var(--amber3);}
+.p-LAKA{background:var(--purp2);color:var(--purp3);}
+.p-PROGRES{background:var(--blue2);color:var(--blue3);}
+
+/* SEARCH & CHIPS */
+.s-bar{background:var(--white);border-radius:var(--r2);padding:.65rem .9rem;display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem;border:1.5px solid var(--sl3);}
+.s-bar input{flex:1;border:none;outline:none;font-size:.85rem;font-family:var(--ff);color:var(--text);background:none;}
+.chips{display:flex;gap:.35rem;overflow-x:auto;padding-bottom:.35rem;margin-bottom:.65rem;scrollbar-width:none;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{padding:.28rem .72rem;border-radius:999px;font-size:.68rem;font-weight:600;white-space:nowrap;border:1.5px solid var(--sl3);background:var(--white);color:var(--text2);cursor:pointer;touch-action:manipulation;}
+.chip.on{background:var(--indigo);border-color:var(--indigo);color:var(--white);}
+
+/* WS CARD */
+.ws-card{background:var(--white);border-radius:var(--r2);padding:.85rem 1rem;margin-bottom:.45rem;box-shadow:var(--sh);border-left:4px solid var(--sl3);cursor:pointer;}
+.ws-card.MP{border-color:var(--red);}
+.ws-card.PP{border-color:var(--amber);}
+.ws-card.MI{border-color:var(--blue);}
+.ws-nopol{font-size:.88rem;font-weight:700;}
+.ws-meta{font-size:.66rem;color:var(--text3);margin-top:.1rem;}
+.ws-prog{display:inline-flex;align-items:center;gap:.28rem;padding:.18rem .55rem;border-radius:999px;font-size:.6rem;font-weight:700;margin-top:.4rem;}
+.idle-badge{font-size:.72rem;font-weight:800;padding:.22rem .55rem;border-radius:8px;}
+
+/* STATUS OPTIONS */
+.st-opts{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-bottom:.9rem;}
+.st-opt{padding:.8rem .4rem;border-radius:var(--r2);border:2px solid var(--sl3);background:var(--white);cursor:pointer;text-align:center;font-family:var(--ff);touch-action:manipulation;}
+.st-opt:active{transform:scale(.96);}
+.st-opt .si{font-size:1.35rem;display:block;margin-bottom:.25rem;}
+.st-opt .sl{font-size:.68rem;font-weight:700;display:block;}
+.st-opt.s-READY{border-color:var(--green);background:var(--green2);}
+.st-opt.s-READY .sl{color:var(--green3);}
+.st-opt.s-BREAKDOWN{border-color:var(--red);background:var(--red2);}
+.st-opt.s-BREAKDOWN .sl{color:var(--red3);}
+.st-opt.s-MANGKRAK{border-color:var(--amber);background:var(--amber2);}
+.st-opt.s-MANGKRAK .sl{color:var(--amber3);}
+.st-opt.s-LAKA{border-color:var(--purp);background:var(--purp2);}
+.st-opt.s-LAKA .sl{color:var(--purp3);}
+.st-opt.s-PROGRES{border-color:var(--blue);background:var(--blue2);}
+.st-opt.s-PROGRES .sl{color:var(--blue3);}
+.st-opt.dis{opacity:.35;cursor:not-allowed;}
+
+/* FORM */
+.f-lbl{display:block;font-size:.67rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem;}
+.f-inp{width:100%;padding:.68rem .85rem;border-radius:var(--r3);border:1.5px solid var(--sl3);background:var(--sl2);color:var(--text);font-size:.85rem;font-family:var(--ff);outline:none;margin-bottom:.7rem;}
+.f-inp:focus{border-color:var(--indigo);background:var(--white);}
+.f-sel{width:100%;padding:.68rem .85rem;border-radius:var(--r3);border:1.5px solid var(--sl3);background:var(--sl2);color:var(--text);font-size:.85rem;font-family:var(--ff);outline:none;margin-bottom:.7rem;appearance:none;}
+.f-sel:focus{border-color:var(--indigo);}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+
+/* BUTTONS */
+.btn-p{width:100%;padding:.88rem;border-radius:var(--r2);border:none;background:var(--indigo);color:var(--white);font-size:.92rem;font-weight:700;cursor:pointer;font-family:var(--ff);display:flex;align-items:center;justify-content:center;gap:.45rem;touch-action:manipulation;}
+.btn-p:active{background:#4338CA;}
+.btn-p:disabled{background:#CBD5E1;color:#94A3B8;cursor:not-allowed;}
+.btn-s{width:100%;padding:.72rem;border-radius:var(--r2);border:1.5px solid var(--sl3);background:var(--white);color:var(--text2);font-size:.85rem;font-weight:600;cursor:pointer;font-family:var(--ff);margin-top:.45rem;}
+
+/* PROFILE */
+.prof-card{background:var(--navy);border-radius:var(--r);padding:1.3rem;margin-bottom:.8rem;text-align:center;position:relative;overflow:hidden;}
+.prof-av{width:60px;height:60px;border-radius:16px;background:var(--indigo);margin:0 auto .65rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;color:var(--white);}
+.prof-name{font-size:1rem;font-weight:700;color:var(--white);}
+.prof-br{font-size:.72rem;color:#94A3B8;margin-top:.18rem;}
+.prof-role{display:inline-block;padding:.18rem .65rem;border-radius:999px;font-size:.63rem;font-weight:700;margin-top:.45rem;}
+.role-admin{background:#4F46E522;color:#818CF8;}
+.role-editor{background:#F59E0B22;color:#FCD34D;}
+.role-viewer{background:#10B98122;color:#6EE7B7;}
+
+/* TOAST */
+.toast{position:fixed;bottom:calc(68px + var(--safe) + .75rem);left:50%;transform:translateX(-50%) translateY(16px);background:var(--navy2);color:var(--white);padding:.6rem 1.2rem;border-radius:var(--r2);font-size:.8rem;font-weight:600;z-index:9999;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.ok{background:#064E3B;}
+.toast.err{background:#7F1D1D;}
+
+/* LOADING */
+.loading{position:fixed;inset:0;background:#0F172ADD;display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;pointer-events:none;transition:opacity .15s;}
+.loading.show{opacity:1;pointer-events:all;}
+.spin{width:40px;height:40px;border:3px solid #FFFFFF22;border-top-color:var(--indigo2);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* MODAL */
+.modal-over{position:fixed;inset:0;background:#00000088;z-index:500;display:flex;align-items:flex-end;justify-content:center;}
+.modal-box{background:var(--white);border-radius:20px 20px 0 0;padding:1.3rem 1.2rem;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;}
+.modal-handle{width:40px;height:4px;background:var(--sl3);border-radius:999px;margin:0 auto .85rem;}
+
+/* STEPS */
+.steps{display:flex;gap:.3rem;margin-bottom:1rem;}
+.step-d{flex:1;height:4px;border-radius:999px;background:var(--sl3);}
+.step-d.done{background:var(--green);}
+.step-d.act{background:var(--indigo);}
+
+/* EMPTY */
+.empty{text-align:center;padding:3rem 1.5rem;color:var(--text3);}
+.empty-ic{font-size:2.5rem;margin-bottom:.6rem;display:block;}
+.empty p{font-size:.8rem;line-height:1.55;}
+
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.anim{animation:up .25s ease both;}
+</style>
+</head>
+<body>
+
+<div class="loading" id="loading"><div class="spin"></div></div>
+<div class="toast" id="toast"></div>
+
+<!-- LOGIN -->
+<div class="screen active" id="sc-login">
+  <div class="login-bg"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">🚛</div>
+      <div><h1>Fleet Mobile</h1><p>PT Pos Logistik Indonesia</p></div>
+    </div>
+    <div class="login-title">Selamat datang</div>
+    <div class="login-sub">Masuk untuk melanjutkan</div>
+    <div id="loginErr" class="login-err">Username atau PIN salah</div>
+    <label class="field-lbl">Username</label>
+    <input class="field-inp" type="text" id="loginUser" placeholder="Masukkan username..." autocomplete="off" autocapitalize="none"/>
+    <label class="field-lbl">PIN (4 Digit)</label>
+    <div class="pin-display" id="pinDisp">
+      <div class="pin-dot" id="pd0"></div><div class="pin-dot" id="pd1"></div>
+      <div class="pin-dot" id="pd2"></div><div class="pin-dot" id="pd3"></div>
+    </div>
+    <div class="pin-grid" id="pinGrid">
+      <button class="pin-btn" data-p="1">1</button><button class="pin-btn" data-p="2">2</button>
+      <button class="pin-btn" data-p="3">3</button><button class="pin-btn" data-p="4">4</button>
+      <button class="pin-btn" data-p="5">5</button><button class="pin-btn" data-p="6">6</button>
+      <button class="pin-btn" data-p="7">7</button><button class="pin-btn" data-p="8">8</button>
+      <button class="pin-btn" data-p="9">9</button>
+      <button class="pin-btn sym" data-p="CLR">✕</button>
+      <button class="pin-btn" data-p="0">0</button>
+      <button class="pin-btn sym" data-p="DEL">⌫</button>
+    </div>
+    <button class="btn-login" id="btnLogin" onclick="doLogin()" disabled>Masuk →</button>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div class="screen" id="sc-app">
+  <div class="topbar">
+    <div class="topbar-info">
+      <div class="topbar-title" id="tbTitle">Dashboard KPI</div>
+      <div class="topbar-sub" id="tbSub">Memuat...</div>
+    </div>
+    <div class="topbar-av" id="tbAv" onclick="goTab('profile')">?</div>
+  </div>
+  <div class="scroll" id="tabContent"></div>
+  <button class="fab" id="fabBtn">＋</button>
+  <div class="bnav">
+    <button class="bn on" id="bn-kpi" onclick="goTab('kpi')">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Dashboard</span>
+    </button>
+    <button class="bn" id="bn-units" onclick="goTab('units')">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      <span>Unit</span>
+    </button>
+    <button class="bn" id="bn-ws" onclick="goTab('ws')">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <span>Workshop</span>
+      <div class="bn-dot" id="wsDot" style="display:none"></div>
+    </button>
+    <button class="bn" id="bn-profile" onclick="goTab('profile')">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+      <span>Profil</span>
+    </button>
+  </div>
+</div>
+
+<!-- UPDATE STATUS SCREEN -->
+<div class="screen" id="sc-update">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('app')">←</button>
+    <div class="topbar-info">
+      <div class="topbar-title" id="upTitle">Update Status</div>
+      <div class="topbar-sub" id="upSub">Pilih status baru</div>
+    </div>
+  </div>
+  <div class="scroll">
+    <div class="card anim" id="upUnitCard"></div>
+    <div class="card anim">
+      <div class="card-title">Pilih Status Baru</div>
+      <div class="st-opts" id="stOpts">
+        <div class="st-opt" id="so-READY" onclick="selStatus('READY')"><span class="si">✅</span><span class="sl">READY</span></div>
+        <div class="st-opt" id="so-BREAKDOWN" onclick="selStatus('BREAKDOWN')"><span class="si">🔴</span><span class="sl">BREAKDOWN</span></div>
+        <div class="st-opt" id="so-MANGKRAK" onclick="selStatus('MANGKRAK')"><span class="si">🟡</span><span class="sl">MANGKRAK</span></div>
+        <div class="st-opt" id="so-LAKA" onclick="selStatus('LAKA')"><span class="si">🟣</span><span class="sl">LAKA</span></div>
+        <div class="st-opt" id="so-PROGRES" onclick="selStatus('PROGRES')"><span class="si">🔵</span><span class="sl">PROGRES</span></div>
+        <div class="st-opt" onclick="goScreen('app')" style="border-color:var(--sl3)"><span class="si">↩️</span><span class="sl" style="color:var(--sl)">BATAL</span></div>
+      </div>
+    </div>
+    <div class="card anim" id="wsFields" style="display:none">
+      <div class="card-title">📋 Data Workshop (opsional)</div>
+      <label class="f-lbl">Keluhan</label>
+      <textarea class="f-inp" id="upKeluhan" rows="2" placeholder="Contoh: Mesin overheat..."></textarea>
+      <label class="f-lbl">Bengkel</label>
+      <input class="f-inp" type="text" id="upBengkel" placeholder="Nama bengkel..."/>
+      <label class="f-lbl">Estimasi Selesai</label>
+      <input class="f-inp" type="date" id="upEst"/>
+    </div>
+    <div class="card anim">
+      <label class="f-lbl">Catatan</label>
+      <input class="f-inp" type="text" id="upNotes" placeholder="Keterangan tambahan..."/>
+    </div>
+    <button class="btn-p" id="btnSave" onclick="saveUpdate()" disabled>✓ Simpan Perubahan</button>
+    <button class="btn-s" onclick="goScreen('app')">Batal</button>
+    <div style="height:1rem"></div>
+  </div>
+</div>
+
+<!-- ADD FLEET SCREEN -->
+<div class="screen" id="sc-add">
+  <div class="topbar">
+    <button class="topbar-back" onclick="goScreen('app')">←</button>
+    <div class="topbar-info">
+      <div class="topbar-title">Tambah Unit Baru</div>
+      <div class="topbar-sub" id="addSub">Langkah 1 dari 3</div>
+    </div>
+  </div>
+  <div class="scroll" id="addContent"></div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════════════════════
+var API = "https://script.google.com/macros/s/AKfycbw9mZ4NDk1sZMAYkwDf7x1fZOOj9E8eI1cH-F48ipP6QAiERmutm9FDidv7ARDtqmBf7g/exec";
+
+var USERS = [
+  {u:"admin",    p:"1234", name:"Admin",         br:"ALL",          role:"admin"},
+  {u:"naren",    p:"2468", name:"Naren",          br:"ALL",          role:"admin"},
+  {u:"smbr",     p:"1111", name:"User SMBR",      br:"BU SMBR",      role:"editor"},
+  {u:"jabod",    p:"2222", name:"User Jabodet",   br:"JABODETABEK",  role:"editor"},
+  {u:"sumteng",  p:"3333", name:"User Sumteng",   br:"SUMBAGTENG",   role:"editor"},
+  {u:"jateng",   p:"4444", name:"User Jateng",    br:"JAWA TENGAH",  role:"editor"},
+  {u:"jatim",    p:"5555", name:"User Jatim",     br:"JAWA TIMUR",   role:"editor"},
+  {u:"jabar",    p:"6666", name:"User Jabar",     br:"JAWA BARAT",   role:"editor"},
+  {u:"sumbagut", p:"7777", name:"User Sumbagut",  br:"SUMBAGUT",     role:"editor"},
+];
+
+var JENIS = ["CDD","CDDL","CDE","FUSO","FUSO LONG","MOTOR","PICK UP BOX","TRAILER","TRONTON","WINGBOX","BLINDVAN","CDDS"];
+var BRANCH = ["HEAD OFFICE","JABODETABEK","JAWA BARAT","JAWA TENGAH","JAWA TIMUR","LINI-1","SUMBAGSEL","SUMBAGUT","SUMBAGTENG","SULAWESI","BU SMBR"];
+var BISNIS = ["POSTAL","SCM","CONTRACT LOGISTICS"];
+var BISNIS_DETAIL = {"POSTAL":["PRIMER","SEKUNDER","TERSIER","RETAIL","RAPP"],"SCM":[""],"CONTRACT LOGISTICS":["RAPP",""]};
+var RUTE = ["PRIMER","SEKUNDER","TERSIER","RETAIL",""];
+var STATUS_ALL = ["READY","BREAKDOWN","MANGKRAK","LAKA","PROGRES"];
+var KAROSERI = ["BOX","FLATBED","BOKS BESI","TANGKI","DUMP","TRAILER","KONTAINER","PICK UP"];
+
+// ════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════
+var me = null;
+var units = [], wsUnits = [], hist = [];
+var curTab = 'kpi', srchQ = '', curChip = 'ALL';
+var upUnit = null, upSt = null;
+var addStep = 1, addData = {};
+var pinVal = '';
+
+// ════════════════════════════════════════════════════════
+// PIN & LOGIN
+// ════════════════════════════════════════════════════════
+document.getElementById('pinGrid').addEventListener('click', function(e) {
+  var btn = e.target.closest('.pin-btn');
+  if (!btn) return;
+  var v = btn.dataset.p;
+  if (v === 'CLR') { pinVal = ''; }
+  else if (v === 'DEL') { pinVal = pinVal.slice(0, -1); }
+  else if (pinVal.length < 4) { pinVal += v; }
+  refreshPin();
+  if (navigator.vibrate) navigator.vibrate(20);
+  if (pinVal.length === 4) setTimeout(tryLogin, 220);
+});
+document.getElementById('pinGrid').addEventListener('touchend', function(e) {
+  e.preventDefault();
+}, {passive: false});
+
+document.getElementById('loginUser').addEventListener('input', function() {
+  refreshPin();
+  document.getElementById('loginErr').style.display = 'none';
+});
+
+function refreshPin() {
+  for (var i = 0; i < 4; i++) {
+    document.getElementById('pd' + i).classList.toggle('on', i < pinVal.length);
+  }
+  var ok = pinVal.length === 4 && document.getElementById('loginUser').value.trim();
+  document.getElementById('btnLogin').disabled = !ok;
+}
+
+function tryLogin() {
+  var uname = document.getElementById('loginUser').value.trim().toLowerCase();
+  var found = null;
+  for (var i = 0; i < USERS.length; i++) {
+    if (USERS[i].u === uname && USERS[i].p === pinVal) { found = USERS[i]; break; }
+  }
+  if (found) startApp(found);
+  else {
+    document.getElementById('loginErr').style.display = 'block';
+    pinVal = ''; refreshPin();
+  }
+}
+
+function doLogin() { tryLogin(); }
+
+function startApp(user) {
+  me = user;
+  try { localStorage.setItem('fleetUser', user.u); } catch(e) {}
+  document.getElementById('tbAv').textContent = user.name.charAt(0).toUpperCase();
+  if (user.role !== 'viewer') {
+    var fab = document.getElementById('fabBtn');
+    fab.style.display = 'flex';
+    fab.onclick = openAdd;
+  }
+  goScreen('app');
+  loadData();
+}
+
+// ════════════════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════════════════
+function loadData() {
+  setLoad(true);
+  fetch(API + '?t=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(j) {
+      parseUnits(j.kbm || []);
+      parseWs(j.workshop || []);
+      renderTab(curTab);
+      updateWsDot();
+      var t = new Date().toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+      document.getElementById('tbSub').textContent = myUnits().length + ' unit · ' + t;
+    })
+    .catch(function() { toast('❌ Gagal mengambil data', 'err'); })
+    .finally(function() { setLoad(false); });
+}
+
+function parseUnits(rows) {
+  units = [];
+  if (rows.length < 2) return;
+  var hIdx = -1;
+  for (var i = 0; i < Math.min(rows.length, 10); i++) {
+    var c = rows[i].map(function(x) { return String(x||'').toUpperCase().trim(); });
+    if (c.indexOf('STATUS') >= 0 && c.indexOf('NOPOL') >= 0) { hIdx = i; break; }
+  }
+  if (hIdx < 0) return;
+  var h = rows[hIdx].map(function(x) { return String(x||'').toUpperCase().trim(); });
+  var gi = function(n) { return h.indexOf(n); };
+  var gp = function(p) { return h.findIndex(function(x) { return x.includes(p); }); };
+  var cv = function(r, i) { return i >= 0 && i < r.length ? String(r[i]||'').trim() : ''; };
+  var iSt = gi('STATUS'), iNo = gi('NOPOL');
+  var iTh = gp('TAHUN'), iJn = gp('JENIS'), iBs = gp('BISNIS');
+  var iBr = h.findIndex(function(x) { return x === 'BRANCH OFFICE' || x.includes('BRANCH') || x.includes('REGIONAL'); });
+  var iBd = h.findIndex(function(x) { return x.includes('DETAIL'); });
+  var iRt = h.findIndex(function(x) { return x === 'RUTE' || x.includes('RUTE'); });
+  for (var i = hIdx + 1; i < rows.length; i++) {
+    var r = rows[i];
+    var st = cv(r, iSt).toUpperCase();
+    var no = cv(r, iNo);
+    if (!st || !no || st === 'STATUS') continue;
+    units.push({
+      status: st, nopol: no,
+      branch: iBr >= 0 ? cv(r, iBr) : '',
+      tahun: cv(r, iTh), jenis: cv(r, iJn),
+      bisnis: cv(r, iBs),
+      bisnis_detail: iBd >= 0 ? cv(r, iBd) : '',
+      rute: iRt >= 0 ? cv(r, iRt) : ''
+    });
+  }
+}
+
+function parseWs(rows) {
+  wsUnits = [];
+  if (rows.length < 2) return;
+  var now = new Date();
+  for (var i = 1; i < rows.length; i++) {
+    var r = rows[i];
+    var no = String(r[1]||'').trim();
+    if (!no) continue;
+    var tgl = String(r[4]||'').trim();
+    var idle = null;
+    if (tgl) {
+      try {
+        var d;
+        if (tgl.includes('/')) {
+          var p = tgl.split('/');
+          d = p[2] ? new Date(parseInt(p[2]), parseInt(p[1])-1, parseInt(p[0])) : new Date(tgl);
+        } else { d = new Date(tgl); }
+        if (!isNaN(d)) idle = Math.floor((now - d) / 86400000);
+      } catch(e) {}
+    }
+    var kbu = units.find(function(u) { return u.nopol === no; }) || {};
+    wsUnits.push({
+      nopol: no, jenis: String(r[2]||'').trim(),
+      keluhan: String(r[3]||'').trim(), tgl: tgl,
+      bengkel: String(r[5]||'').trim(), progress: String(r[6]||'').trim(),
+      est: String(r[7]||'').trim(), idle: idle,
+      branch: kbu.branch || ''
+    });
+  }
+}
+
+function myUnits() {
+  if (!me || me.br === 'ALL') return units;
+  var br = me.br.toUpperCase();
+  return units.filter(function(u) {
+    var ub = (u.branch || '').toUpperCase();
+    return ub.includes(br) || br.includes(ub);
+  });
+}
+
+function myWs() {
+  if (!me || me.br === 'ALL') return wsUnits;
+  var nops = new Set(myUnits().map(function(u) { return u.nopol; }));
+  return wsUnits.filter(function(w) { return nops.has(w.nopol); });
+}
+
+// ════════════════════════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════════════════════════
+function goScreen(name) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('sc-' + name).classList.add('active');
+}
+
+function goTab(tab) {
+  curTab = tab;
+  ['kpi','units','ws','profile'].forEach(function(t) {
+    var b = document.getElementById('bn-' + t);
+    if (b) b.classList.toggle('on', t === tab);
+  });
+  renderTab(tab);
+}
+
+function renderTab(tab) {
+  var el = document.getElementById('tabContent');
+  var titles = {kpi:'Dashboard KPI', units:'Daftar Unit', ws:'Workshop Tracking', profile:'Profil'};
+  var subs = {
+    kpi: (me && me.br !== 'ALL' ? me.br : 'Semua Branch') + ' · ' + myUnits().length + ' unit',
+    units: me && me.br !== 'ALL' ? me.br : 'Semua Branch',
+    ws: me && me.br !== 'ALL' ? me.br : 'Semua Branch',
+    profile: 'Akun & Pengaturan'
+  };
+  document.getElementById('tbTitle').textContent = titles[tab] || '';
+  document.getElementById('tbSub').textContent = subs[tab] || '';
+  if (tab === 'kpi') el.innerHTML = buildKPI();
+  else if (tab === 'units') el.innerHTML = buildUnits();
+  else if (tab === 'ws') el.innerHTML = buildWS();
+  else if (tab === 'profile') el.innerHTML = buildProfile();
+  el.scrollTop = 0;
+}
+
+// ════════════════════════════════════════════════════════
+// KPI TAB
+// ════════════════════════════════════════════════════════
+function buildKPI() {
+  var u = myUnits();
+  var total = u.length;
+  var cnt = {};
+  u.forEach(function(x) { cnt[x.status] = (cnt[x.status]||0) + 1; });
+  var nR = cnt.READY||0, nB = cnt.BREAKDOWN||0, nM = cnt.MANGKRAK||0, nL = cnt.LAKA||0, nP = cnt.PROGRES||0;
+  var pR = total ? +(nR/total*100).toFixed(1) : 0;
+  var pB = total ? +(nB/total*100).toFixed(1) : 0;
+  var kR = pR >= 90, kB = pB <= 10;
+  var h = '';
+
+  // KPI #1
+  h += '<div class="kpi-h anim">';
+  h += '<div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative">';
+  h += '<div><div class="kpi-h-lbl">KPI #1 — Unit Ready</div>';
+  h += '<div class="kpi-h-val">' + pR + '<span style="font-size:1.2rem;opacity:.7">%</span></div>';
+  h += '<div class="kpi-h-sub">Target ≥ 90% · ' + nR + ' dari ' + total + ' unit</div></div>';
+  h += '<span class="kpi-badge ' + (kR ? 'badge-ok' : 'badge-fail') + '">' + (kR ? '✓ Tercapai' : '✗ Tidak Tercapai') + '</span>';
+  h += '</div>';
+  h += '<div class="kpi-bar-wrap"><div class="kpi-bar" style="width:' + Math.min(pR,100) + '%;background:' + (kR?'#10B981':'#EF4444') + '"></div></div>';
+  if (kR) h += '<div class="kpi-note ok">Target tercapai 🎉</div>';
+  else h += '<div class="kpi-note fail">Kurang ' + (90-pR).toFixed(1) + '% — perlu +' + Math.ceil(0.9*total - nR) + ' unit ready</div>';
+  h += '</div>';
+
+  // KPI #2
+  h += '<div class="kpi-h anim" style="background:' + (kB?'#064E3B':'#1E293B') + '">';
+  h += '<div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative">';
+  h += '<div><div class="kpi-h-lbl">KPI #2 — Unit Breakdown</div>';
+  h += '<div class="kpi-h-val" style="color:' + (kB?'#6EE7B7':'#FCA5A5') + '">' + pB + '<span style="font-size:1.2rem;opacity:.7">%</span></div>';
+  h += '<div class="kpi-h-sub">Batas ≤ 10% · ' + nB + ' unit breakdown</div></div>';
+  h += '<span class="kpi-badge ' + (kB?'badge-ok':'badge-fail') + '">' + (kB?'✓ Tercapai':'✗ Melampaui') + '</span>';
+  h += '</div>';
+  h += '<div class="kpi-bar-wrap"><div class="kpi-bar" style="width:' + Math.min(pB*5,100) + '%;background:' + (kB?'#10B981':'#EF4444') + '"></div></div>';
+  if (kB) h += '<div class="kpi-note ok">Dalam batas — aman ' + (10-pB).toFixed(1) + '%</div>';
+  else h += '<div class="kpi-note fail">Melampaui ' + (pB-10).toFixed(1) + '% — kurangi ' + Math.ceil((pB-10)/100*total) + ' unit</div>';
+  h += '</div>';
+
+  // Status grid
+  var cards = [
+    {l:'Ready',v:nR,bg:'#ECFDF5',c:'#065F46'},{l:'Breakdown',v:nB,bg:'#FEF2F2',c:'#991B1B'},
+    {l:'Mangkrak',v:nM,bg:'#FFFBEB',c:'#92400E'},{l:'Laka',v:nL,bg:'#F5F3FF',c:'#5B21B6'},
+    {l:'Progres',v:nP,bg:'#EFF6FF',c:'#1E40AF'},{l:'Total',v:total,bg:'#EEF2FF',c:'#3730A3'}
+  ];
+  h += '<div class="st-grid anim">';
+  cards.forEach(function(c) {
+    h += '<div class="st-c" style="background:' + c.bg + '">';
+    h += '<div class="st-v" style="color:' + c.c + '">' + c.v + '</div>';
+    h += '<div class="st-l" style="color:' + c.c + '">' + c.l + '</div>';
+    h += '<div class="st-p" style="color:' + c.c + '">' + (total ? (c.v/total*100).toFixed(1) : 0) + '%</div>';
+    h += '</div>';
+  });
+  h += '</div>';
+
+  // Session history
+  if (hist.length) {
+    h += '<div style="font-size:.67rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem">Update Sesi Ini</div>';
+    hist.slice(0,5).forEach(function(x) {
+      h += '<div class="u-item" style="cursor:default">';
+      h += '<div class="u-icon" style="background:#EEF2FF">✏️</div>';
+      h += '<div class="u-info"><div class="u-nopol">' + x.nopol + '</div>';
+      h += '<div class="u-meta">' + x.from + ' → ' + x.to + ' · ' + x.time + '</div></div></div>';
+    });
+  }
+  return h;
+}
+
+// ════════════════════════════════════════════════════════
+// UNITS TAB
+// ════════════════════════════════════════════════════════
+function buildUnits() {
+  var u = myUnits();
+  if (curChip !== 'ALL') u = u.filter(function(x) { return x.status === curChip; });
+  if (srchQ) u = u.filter(function(x) {
+    return x.nopol.toLowerCase().includes(srchQ) || x.jenis.toLowerCase().includes(srchQ) || (x.branch||'').toLowerCase().includes(srchQ);
+  });
+  var all = myUnits();
+  var h = '';
+
+  // Search
+  h += '<div class="s-bar"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>';
+  h += '<input type="text" placeholder="Cari nopol, jenis, branch..." id="srchInp" value="' + (srchQ||'') + '" autocomplete="off"/></div>';
+
+  // Chips
+  h += '<div class="chips">';
+  var chps = ['ALL','READY','BREAKDOWN','MANGKRAK','LAKA','PROGRES'];
+  chps.forEach(function(c) {
+    var cnt = c === 'ALL' ? all.length : all.filter(function(x){return x.status===c;}).length;
+    var lbl = c === 'ALL' ? 'Semua' : c;
+    h += '<div class="chip' + (curChip===c?' on':'') + '" data-chip="' + c + '">' + lbl + ' (' + cnt + ')</div>';
+  });
+  h += '</div>';
+
+  // Units
+  var stBg = {READY:'#ECFDF5',BREAKDOWN:'#FEF2F2',MANGKRAK:'#FFFBEB',LAKA:'#F5F3FF',PROGRES:'#EFF6FF'};
+  var stIc = {READY:'✅',BREAKDOWN:'🔴',MANGKRAK:'🟡',LAKA:'🟣',PROGRES:'🔵'};
+  if (!u.length) {
+    h += '<div class="empty"><span class="empty-ic">🔍</span><p>Tidak ada unit yang sesuai</p></div>';
+  } else {
+    u.forEach(function(x) {
+      var canEdit = me && me.role !== 'viewer';
+      h += '<div class="u-item"' + (canEdit ? ' data-nopol="' + x.nopol + '" onclick="openUpdate(this.dataset.nopol)"' : '') + '>';
+      h += '<div class="u-icon" style="background:' + (stBg[x.status]||'#F1F5F9') + '">' + (stIc[x.status]||'🚛') + '</div>';
+      h += '<div class="u-info"><div class="u-nopol">' + x.nopol + '</div>';
+      h += '<div class="u-meta">' + (x.branch||'-') + ' · ' + (x.jenis||'-') + ' · ' + (x.tahun||'-') + '</div>';
+      if (x.bisnis || x.rute) {
+        var parts = [x.bisnis, x.bisnis_detail, x.rute].filter(Boolean);
+        h += '<div class="u-bisnis">' + parts.join(' · ') + '</div>';
+      }
+      h += '</div><span class="pill p-' + x.status + '">' + x.status + '</span></div>';
+    });
+  }
+  if (me && me.role === 'viewer') h += '<div style="text-align:center;padding:1rem;font-size:.73rem;color:var(--text3)">Mode: Lihat saja</div>';
+  return h;
+}
+
+// ════════════════════════════════════════════════════════
+// WORKSHOP TAB
+// ════════════════════════════════════════════════════════
+function buildWS() {
+  var ws = myWs().slice();
+  ws.sort(function(a,b) { return (b.idle||0) - (a.idle||0); });
+  var total = ws.length;
+  var nPart = ws.filter(function(x){return x.progress==='MENUNGGU PART';}).length;
+  var nProses = ws.filter(function(x){return x.progress==='PROSES PERBAIKAN';}).length;
+  var nInspek = ws.filter(function(x){return x.progress==='MENUNGGU INSPEKSI';}).length;
+  var maxIdle = ws.reduce(function(m,x){return x.idle>m?x.idle:m;}, 0);
+  var noTgl = ws.filter(function(x){return !x.tgl;}).length;
+  var critical = ws.filter(function(x){return x.idle>14;}).length;
+
+  var h = '';
+  // Summary
+  h += '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.45rem;margin-bottom:.65rem">';
+  var sc = [{l:'Total',v:total,bg:'#EEF2FF',c:'#3730A3'},{l:'>14 Hari 🔴',v:critical,bg:'#FEF2F2',c:'#991B1B'},{l:'Menunggu Part',v:nPart,bg:'#FEF2F2',c:'#991B1B'},{l:'Proses Perbaikan',v:nProses,bg:'#FFFBEB',c:'#92400E'}];
+  sc.forEach(function(c) {
+    h += '<div class="st-c" style="background:'+c.bg+'"><div class="st-v" style="color:'+c.c+'">'+c.v+'</div><div class="st-l" style="color:'+c.c+'">'+c.l+'</div></div>';
+  });
+  h += '</div>';
+
+  // Alert
+  if (maxIdle > 0) {
+    var abg = maxIdle>14?'#FEF2F2':maxIdle>7?'#FFFBEB':'#ECFDF5';
+    var aic = maxIdle>14?'🚨':maxIdle>7?'⚠️':'✅';
+    var atc = maxIdle>14?'#991B1B':maxIdle>7?'#92400E':'#065F46';
+    h += '<div style="background:'+abg+';border-radius:12px;padding:.65rem .9rem;margin-bottom:.65rem;display:flex;align-items:center;gap:.55rem">';
+    h += '<span style="font-size:1.2rem">'+aic+'</span><div>';
+    h += '<div style="font-size:.73rem;font-weight:700;color:'+atc+'">Unit terlama: '+maxIdle+' hari idle</div>';
+    if (noTgl>0) h += '<div style="font-size:.63rem;color:#EF4444;margin-top:.1rem">⚠️ '+noTgl+' unit belum ada tanggal masuk</div>';
+    h += '</div></div>';
+  }
+
+  // Filter chips
+  h += '<div class="chips">';
+  var wf = ['SEMUA','MENUNGGU PART','PROSES PERBAIKAN','MENUNGGU INSPEKSI'];
+  wf.forEach(function(f) {
+    var lbl = f==='SEMUA'?'Semua ('+total+')':f;
+    h += '<div class="chip" data-wf="'+f+'">'+lbl+'</div>';
+  });
+  h += '</div>';
+
+  // List
+  if (!ws.length) {
+    h += '<div class="empty"><span class="empty-ic">🎉</span><p>Tidak ada unit dalam perbaikan</p></div>';
+  } else {
+    var pgC = {'MENUNGGU PART':['#FEF2F2','#991B1B','🔴','MP'],'PROSES PERBAIKAN':['#FFFBEB','#92400E','🔧','PP'],'MENUNGGU INSPEKSI':['#EFF6FF','#1E40AF','🔍','MI']};
+    ws.forEach(function(w) {
+      var pg = w.progress || 'MENUNGGU PART';
+      var pc = pgC[pg] || ['#F1F5F9','#475569','❓',''];
+      var dc = w.idle===null?'#94A3B8':w.idle<=7?'#065F46':w.idle<=14?'#92400E':'#991B1B';
+      var dl = w.idle===null?'—':w.idle===0?'Hari ini':w.idle+' hari';
+      var di = w.idle===null?'':w.idle>14?'🔴 ':w.idle>7?'🟡 ':'🟢 ';
+      h += '<div class="ws-card '+pc[3]+'" data-nopol="'+w.nopol+'" onclick="openWsUpdate(this.dataset.nopol)">';
+      h += '<div style="display:flex;justify-content:space-between;align-items:flex-start">';
+      h += '<div style="flex:1;min-width:0"><div class="ws-nopol">'+w.nopol+'</div>';
+      h += '<div class="ws-meta">'+(w.jenis||'-')+' · '+(w.branch||'-')+'</div>';
+      if (w.keluhan) h += '<div class="ws-meta" style="color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+w.keluhan+'</div>';
+      h += '</div>';
+      h += '<div style="text-align:right;flex-shrink:0;margin-left:.5rem">';
+      h += '<div class="idle-badge" style="background:'+dc+'22;color:'+dc+'">'+di+dl+'</div>';
+      h += '<div style="font-size:.56rem;color:var(--text3);margin-top:.15rem;text-align:center">idle</div>';
+      h += '</div></div>';
+      h += '<div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap">';
+      h += '<span class="ws-prog" style="background:'+pc[0]+';color:'+pc[1]+'">'+pc[2]+' '+pg+'</span>';
+      if (w.tgl) h += '<span style="font-size:.6rem;color:var(--text3)">📅 '+w.tgl+'</span>';
+      else h += '<span style="font-size:.6rem;color:#EF4444">📅 Tambah tanggal</span>';
+      if (w.est) h += '<span style="font-size:.6rem;color:var(--text3)">🏁 '+w.est+'</span>';
+      if (w.bengkel) h += '<span style="font-size:.6rem;color:var(--text3)">🔧 '+w.bengkel+'</span>';
+      h += '</div></div>';
+    });
+  }
+  return h;
+}
+
+// ════════════════════════════════════════════════════════
+// PROFILE TAB
+// ════════════════════════════════════════════════════════
+function buildProfile() {
+  var u = myUnits();
+  var cnt = {};
+  u.forEach(function(x) { cnt[x.status] = (cnt[x.status]||0)+1; });
+  var wsCount = myWs().length;
+  var h = '';
+  h += '<div class="prof-card anim">';
+  h += '<div class="prof-av">' + me.name.charAt(0) + '</div>';
+  h += '<div class="prof-name">'+me.name+'</div>';
+  h += '<div class="prof-br">Branch: '+(me.br==='ALL'?'Semua Branch':me.br)+'</div>';
+  h += '<span class="prof-role role-'+me.role+'">'+me.role.charAt(0).toUpperCase()+me.role.slice(1)+'</span>';
+  h += '</div>';
+  h += '<div class="card anim">';
+  h += '<div class="card-title">Statistik</div>';
+  h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">';
+  var st = [['Total',u.length,'#3730A3','#EEF2FF'],['Ready',cnt.READY||0,'#065F46','#ECFDF5'],['Breakdown',cnt.BREAKDOWN||0,'#991B1B','#FEF2F2'],['Workshop',wsCount,'#1E40AF','#EFF6FF']];
+  st.forEach(function(s) {
+    h += '<div style="background:'+s[3]+';border-radius:10px;padding:.7rem;text-align:center">';
+    h += '<div style="font-size:1.45rem;font-weight:800;color:'+s[2]+'">'+s[1]+'</div>';
+    h += '<div style="font-size:.62rem;font-weight:600;color:'+s[2]+';text-transform:uppercase;letter-spacing:.4px;margin-top:.1rem">'+s[0]+'</div>';
+    h += '</div>';
+  });
+  h += '</div></div>';
+  if (hist.length) {
+    h += '<div class="card anim"><div class="card-title">Riwayat Update ('+hist.length+')</div>';
+    hist.forEach(function(x) {
+      h += '<div style="display:flex;align-items:center;gap:.55rem;padding:.4rem 0;border-bottom:1px solid var(--sl3)">';
+      h += '<div style="flex:1"><div style="font-size:.8rem;font-weight:700">'+x.nopol+'</div>';
+      h += '<div style="font-size:.67rem;color:var(--text3)">'+x.from+' → <strong style="color:var(--text)">'+x.to+'</strong></div></div>';
+      h += '<div style="font-size:.63rem;color:var(--text3)">'+x.time+'</div></div>';
+    });
+    h += '</div>';
+  }
+  h += '<div class="card anim"><div class="card-title">Info</div>';
+  h += '<div style="font-size:.77rem;color:var(--text2);line-height:1.7">Versi: <strong>2.0</strong> · Data: KBM Investasi</div>';
+  h += '<button onclick="loadData()" style="margin-top:.75rem;width:100%;padding:.65rem;border-radius:9px;border:1.5px solid var(--sl3);background:var(--sl2);color:var(--text2);font-size:.82rem;font-weight:600;cursor:pointer;font-family:var(--ff)">🔄 Refresh Data</button>';
+  h += '</div>';
+  h += '<button onclick="doLogout()" style="width:100%;padding:.82rem;border-radius:var(--r2);border:1.5px solid #FEE2E2;background:var(--white);color:#EF4444;font-size:.88rem;font-weight:700;cursor:pointer;font-family:var(--ff);margin-top:.5rem">Keluar dari Akun</button>';
+  h += '<div style="height:1rem"></div>';
+  return h;
+}
+
+// ════════════════════════════════════════════════════════
+// UPDATE STATUS
+// ════════════════════════════════════════════════════════
+function openUpdate(nopol) {
+  if (!me || me.role === 'viewer') { toast('Mode lihat saja', 'err'); return; }
+  upUnit = units.find(function(x) { return x.nopol === nopol; });
+  if (!upUnit) return;
+  upSt = null;
+  var stBg = {READY:'#ECFDF5',BREAKDOWN:'#FEF2F2',MANGKRAK:'#FFFBEB',LAKA:'#F5F3FF',PROGRES:'#EFF6FF'};
+  var stC = {READY:'#065F46',BREAKDOWN:'#991B1B',MANGKRAK:'#92400E',LAKA:'#5B21B6',PROGRES:'#1E40AF'};
+  var stIc = {READY:'✅',BREAKDOWN:'🔴',MANGKRAK:'🟡',LAKA:'🟣',PROGRES:'🔵'};
+  document.getElementById('upTitle').textContent = upUnit.nopol;
+  document.getElementById('upSub').textContent = 'Status: ' + upUnit.status;
+  var c = document.getElementById('upUnitCard');
+  c.innerHTML = '<div style="display:flex;align-items:center;gap:.8rem">'
+    + '<div style="width:46px;height:46px;border-radius:13px;background:'+(stBg[upUnit.status]||'#F1F5F9')+';display:flex;align-items:center;justify-content:center;font-size:1.35rem;flex-shrink:0">'+(stIc[upUnit.status]||'🚛')+'</div>'
+    + '<div><div style="font-size:1rem;font-weight:800">'+upUnit.nopol+'</div>'
+    + '<div style="font-size:.7rem;color:var(--text3);margin-top:.1rem">'+(upUnit.branch||'-')+' · '+(upUnit.jenis||'-')+' · '+(upUnit.tahun||'-')+'</div>'
+    + '<span class="pill p-'+upUnit.status+'" style="margin-top:.3rem;display:inline-block">'+upUnit.status+'</span>'
+    + '</div></div>';
+  STATUS_ALL.forEach(function(s) {
+    var btn = document.getElementById('so-' + s);
+    if (!btn) return;
+    btn.className = 'st-opt' + (s === upUnit.status ? ' dis' : '');
+    btn.onclick = s === upUnit.status ? null : function() { selStatus(s); };
+  });
+  document.getElementById('wsFields').style.display = 'none';
+  ['upKeluhan','upBengkel','upEst','upNotes'].forEach(function(id) { document.getElementById(id).value = ''; });
+  document.getElementById('btnSave').disabled = true;
+  goScreen('update');
+}
+
+function selStatus(st) {
+  if (!upUnit || st === upUnit.status) return;
+  upSt = st;
+  STATUS_ALL.forEach(function(s) {
+    var btn = document.getElementById('so-' + s);
+    if (!btn) return;
+    btn.className = 'st-opt' + (s === upUnit.status ? ' dis' : s === st ? ' s-'+st : '');
+  });
+  document.getElementById('wsFields').style.display = ['BREAKDOWN','MANGKRAK','LAKA','PROGRES'].includes(st) ? 'block' : 'none';
+  document.getElementById('btnSave').disabled = false;
+}
+
+function saveUpdate() {
+  if (!upUnit || !upSt) return;
+  var btn = document.getElementById('btnSave');
+  btn.disabled = true;
+  btn.textContent = 'Menyimpan...';
+  var payload = {action:'updateStatus', nopol:upUnit.nopol, newStatus:upSt, updatedBy:me?me.name:'', notes:document.getElementById('upNotes').value||''};
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)})
+    .then(function(r){return r.json();})
+    .then(function(d) {
+      if (!d.ok) throw new Error(d.msg);
+      var kel = document.getElementById('upKeluhan').value;
+      var bgl = document.getElementById('upBengkel').value;
+      var est = document.getElementById('upEst').value;
+      if (['BREAKDOWN','MANGKRAK','LAKA','PROGRES'].includes(upSt) && (kel||bgl||est)) {
+        var prog = upSt==='BREAKDOWN'?'MENUNGGU PART':upSt==='LAKA'?'MENUNGGU INSPEKSI':'PROSES PERBAIKAN';
+        fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'updateWorkshop',nopol:upUnit.nopol,progress:prog,keluhan:kel,bengkel:bgl,estSelesai:est})});
+      }
+      var old = upUnit.status;
+      var u2 = units.find(function(x){return x.nopol===upUnit.nopol;});
+      if (u2) u2.status = upSt;
+      hist.unshift({nopol:upUnit.nopol, from:old, to:upSt, time:new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'})});
+      toast('✅ ' + upUnit.nopol + ' → ' + upSt, 'ok');
+      goScreen('app'); renderTab(curTab);
+      setTimeout(loadData, 1500);
+    })
+    .catch(function(e) {
+      toast('❌ ' + e.message, 'err');
+      btn.disabled = false; btn.textContent = '✓ Simpan Perubahan';
+    });
+}
+
+// ════════════════════════════════════════════════════════
+// WORKSHOP UPDATE MODAL
+// ════════════════════════════════════════════════════════
+function openWsUpdate(nopol) {
+  var w = wsUnits.find(function(x){return x.nopol===nopol;}) || {nopol:nopol};
+  var today = new Date().toISOString().split('T')[0];
+  var ov = document.createElement('div');
+  ov.className = 'modal-over'; ov.id = 'wsModal';
+  var progs = ['MENUNGGU PART','PROSES PERBAIKAN','MENUNGGU INSPEKSI'];
+  var progOpts = progs.map(function(p) {
+    return '<option value="'+p+'"'+(w.progress===p?' selected':'')+'>'+p+'</option>';
+  }).join('');
+  ov.innerHTML = '<div class="modal-box">'
+    + '<div class="modal-handle"></div>'
+    + '<div style="font-size:.68rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.85rem">Workshop — '+w.nopol+'</div>'
+    + '<label class="f-lbl">📅 Tanggal Masuk Workshop *</label>'
+    + '<input class="f-inp" type="date" id="ws_tgl" value="'+(w.tgl&&w.tgl.includes('-')?w.tgl:today)+'" max="'+today+'"/>'
+    + (w.idle!==null ? '<div style="margin-top:-.5rem;margin-bottom:.7rem;font-size:.7rem;color:var(--text3)">Saat ini: <strong>'+w.idle+' hari idle</strong></div>' : '')
+    + '<label class="f-lbl">Progress</label>'
+    + '<select class="f-sel" id="ws_prog"><option value="">— Pilih —</option>'+progOpts+'</select>'
+    + '<label class="f-lbl">Keluhan</label>'
+    + '<textarea class="f-inp" id="ws_kel" rows="2" placeholder="Masukkan keluhan...">'+(w.keluhan||'')+'</textarea>'
+    + '<label class="f-lbl">Bengkel</label>'
+    + '<input class="f-inp" type="text" id="ws_bgl" value="'+(w.bengkel||'')+'" placeholder="Nama bengkel..."/>'
+    + '<label class="f-lbl">Estimasi Selesai</label>'
+    + '<input class="f-inp" type="date" id="ws_est" value="'+(w.est||'')+'" style="margin-bottom:.85rem"/>'
+    + '<button class="btn-p" id="wsSaveBtn" data-nopol="'+nopol+'" onclick="saveWsUpdate(this.dataset.nopol)">Simpan</button>'
+    + '<button class="btn-s" onclick="document.getElementById(\'wsModal\').remove()">Batal</button>'
+    + '<div style="height:.75rem"></div>'
+    + '</div>';
+  document.body.appendChild(ov);
+  ov.addEventListener('click', function(e) { if (e.target === ov) ov.remove(); });
+}
+
+function saveWsUpdate(nopol) {
+  var tgl = document.getElementById('ws_tgl').value;
+  var prog = document.getElementById('ws_prog').value;
+  var kel = document.getElementById('ws_kel').value;
+  var bgl = document.getElementById('ws_bgl').value;
+  var est = document.getElementById('ws_est').value;
+  if (!tgl) { toast('⚠️ Tanggal masuk wajib diisi', 'err'); return; }
+  var idle = Math.floor((new Date() - new Date(tgl)) / 86400000);
+  var btn = document.getElementById('wsSaveBtn');
+  btn.disabled = true; btn.textContent = 'Menyimpan...';
+  fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({action:'updateWorkshop',nopol:nopol,progress:prog,keluhan:kel,bengkel:bgl,estSelesai:est,tglMasuk:tgl,idleDays:idle})})
+    .then(function(r){return r.json();})
+    .then(function(d) {
+      if (!d.ok) throw new Error(d.msg);
+      toast('✅ Workshop '+nopol+' diupdate · idle: '+idle+' hari', 'ok');
+      document.getElementById('wsModal').remove();
+      setTimeout(loadData, 1000);
+    })
+    .catch(function(e) {
+      toast('❌ '+e.message,'err');
+      btn.disabled=false; btn.textContent='Simpan';
+    });
+}
+
+// ════════════════════════════════════════════════════════
+// ADD FLEET
+// ════════════════════════════════════════════════════════
+function openAdd() {
+  addStep = 1; addData = {};
+  goScreen('add'); renderAdd();
+}
+
+function renderAdd() {
+  document.getElementById('addSub').textContent = 'Langkah ' + addStep + ' dari 3';
+  var el = document.getElementById('addContent');
+  var steps = '<div class="steps">'
+    + '<div class="step-d '+(addStep>=1?addStep>1?'done':'act':'')+'" ></div>'
+    + '<div class="step-d '+(addStep>=2?addStep>2?'done':'act':'')+'" ></div>'
+    + '<div class="step-d '+(addStep>=3?'act':'')+'" ></div>'
+    + '</div>';
+  if (addStep === 1) el.innerHTML = steps + buildAdd1();
+  else if (addStep === 2) el.innerHTML = steps + buildAdd2();
+  else el.innerHTML = steps + buildAdd3();
+  el.scrollTop = 0;
+}
+
+function selOpt(arr, val) {
+  return arr.map(function(o) { return '<option value="'+o+'"'+(val===o?' selected':'')+'>'+o+'</option>'; }).join('');
+}
+
+function buildAdd1() {
+  var d = addData;
+  return '<div class="card"><div class="card-title">🚛 Data Kendaraan</div>'
+    + '<label class="f-lbl">Nomor Polisi *</label><input class="f-inp" id="af_nopol" type="text" placeholder="B 1234 PXR" value="'+(d.nopol||'')+'"/>'
+    + '<div class="f-grid">'
+    + '<div><label class="f-lbl">Branch Office *</label><select class="f-sel" id="af_branch"><option value="">— Pilih —</option>'+selOpt(BRANCH,d.branch)+'</select></div>'
+    + '<div><label class="f-lbl">Status *</label><select class="f-sel" id="af_status"><option value="">— Pilih —</option>'+selOpt(STATUS_ALL,d.status||'READY')+'</select></div>'
+    + '</div>'
+    + '<div class="f-grid">'
+    + '<div><label class="f-lbl">Tahun *</label><input class="f-inp" type="number" id="af_tahun" placeholder="2024" min="2000" max="2030" value="'+(d.tahun||'')+'"/></div>'
+    + '<div><label class="f-lbl">Jenis *</label><select class="f-sel" id="af_jenis"><option value="">— Pilih —</option>'+selOpt(JENIS,d.jenis)+'</select></div>'
+    + '</div>'
+    + '<div class="f-grid">'
+    + '<div><label class="f-lbl">Karoseri</label><select class="f-sel" id="af_kar"><option value="">— Pilih —</option>'+selOpt(KAROSERI,d.karoseri||'BOX')+'</select></div>'
+    + '<div><label class="f-lbl">Merek / Type</label><input class="f-inp" type="text" id="af_merek" placeholder="Hino, Mitsubishi..." value="'+(d.merek||'')+'"/></div>'
+    + '</div></div>'
+    + '<button class="btn-p" onclick="nextAdd1()">Lanjut →</button>'
+    + '<button class="btn-s" onclick="goScreen(\'app\')">Batal</button>'
+    + '<div style="height:1rem"></div>';
+}
+
+function buildAdd2() {
+  var d = addData;
+  var detOpts = (BISNIS_DETAIL[d.bisnis]||['PRIMER','SEKUNDER','TERSIER']).map(function(o){return '<option value="'+o+'"'+(d.bisnis_detail===o?' selected':'')+'>'+o+'</option>';}).join('');
+  return '<div class="card"><div class="card-title">📋 Bisnis & Rute</div>'
+    + '<div class="f-grid">'
+    + '<div><label class="f-lbl">Bisnis *</label><select class="f-sel" id="af_bis" onchange="updDetOpts(this.value)"><option value="">— Pilih —</option>'+selOpt(BISNIS,d.bisnis)+'</select></div>'
+    + '<div><label class="f-lbl">Detail Bisnis</label><select class="f-sel" id="af_det"><option value="">— Pilih —</option>'+detOpts+'</select></div>'
+    + '</div>'
+    + '<label class="f-lbl">Rute</label><select class="f-sel" id="af_rute"><option value="">— Pilih —</option>'+selOpt(RUTE,d.rute)+'</select>'
+    + '<label class="f-lbl">Kepemilikan</label><input class="f-inp" type="text" id="af_kep" value="'+(d.kepemilikan||'PT POS LOGISTIK INDONESIA')+'"/>'
+    + '<div class="f-grid">'
+    + '<div><label class="f-lbl">Volume (m³)</label><input class="f-inp" type="number" step=".1" id="af_vol" placeholder="2.6" value="'+(d.volume||'')+'"/></div>'
+    + '<div><label class="f-lbl">Tonase (ton)</label><input class="f-inp" type="number" step=".1" id="af_ton" placeholder="0.7" value="'+(d.tonase||'')+'"/></div>'
+    + '</div>'
+    + '<div class="f-grid">'
+    + '<div><label class="f-lbl">Status GPS</label><select class="f-sel" id="af_gps"><option value="AKTIF"'+((!d.gps||d.gps==='AKTIF')?' selected':'')+'>AKTIF</option><option value="NON AKTIF"'+(d.gps==='NON AKTIF'?' selected':'')+'>NON AKTIF</option></select></div>'
+    + '<div><label class="f-lbl">Investasi/Vendor</label><select class="f-sel" id="af_inv"><option value="INVESTASI"'+((!d.inv||d.inv==='INVESTASI')?' selected':'')+'>INVESTASI</option><option value="VENDOR"'+(d.inv==='VENDOR'?' selected':'')+'>VENDOR</option></select></div>'
+    + '</div></div>'
+    + '<button class="btn-p" onclick="nextAdd2()">Lanjut →</button>'
+    + '<button class="btn-s" onclick="addStep=1;renderAdd()">← Kembali</button>'
+    + '<div style="height:1rem"></div>';
+}
+
+function buildAdd3() {
+  var d = addData;
+  var rows = [['Nomor Polisi',d.nopol],['Branch',d.branch],['Status',d.status],['Tahun',d.tahun],['Jenis',d.jenis],['Karoseri',d.karoseri],['Merek',d.merek],['Bisnis',d.bisnis],['Detail Bisnis',d.bisnis_detail],['Rute',d.rute],['Kepemilikan',d.kepemilikan],['Volume',d.volume?d.volume+' m³':''],['Tonase',d.tonase?d.tonase+' ton':''],['GPS',d.gps],['Investasi/Vendor',d.inv]].filter(function(r){return r[1];});
+  var stIc = {READY:'✅',BREAKDOWN:'🔴',MANGKRAK:'🟡',LAKA:'🟣',PROGRES:'🔵'};
+  var rowsHtml = rows.map(function(r) {
+    return '<div style="display:flex;justify-content:space-between;padding:.38rem 0;border-bottom:1px solid var(--sl3)"><span style="font-size:.73rem;color:var(--text3)">'+r[0]+'</span><span style="font-size:.73rem;font-weight:600;text-align:right;max-width:55%">'+r[1]+'</span></div>';
+  }).join('');
+  return '<div class="card"><div class="card-title">✅ Konfirmasi Unit Baru</div>'
+    + '<div style="background:var(--indigo3);border-radius:11px;padding:.8rem .95rem;margin-bottom:.85rem;display:flex;align-items:center;gap:.75rem">'
+    + '<span style="font-size:1.7rem">'+(stIc[d.status]||'🚛')+'</span>'
+    + '<div><div style="font-size:1.05rem;font-weight:800;color:var(--indigo)">'+d.nopol+'</div>'
+    + '<div style="font-size:.7rem;color:var(--text2);margin-top:.12rem">'+d.branch+' · '+d.jenis+' · '+d.tahun+'</div></div>'
+    + '</div>' + rowsHtml + '</div>'
+    + '<button class="btn-p" id="btnAddFleet" onclick="submitAdd()">✓ Simpan Unit Baru</button>'
+    + '<button class="btn-s" onclick="addStep=2;renderAdd()">← Kembali</button>'
+    + '<div style="height:1rem"></div>';
+}
+
+function updDetOpts(bisnis) {
+  var opts = BISNIS_DETAIL[bisnis] || ['PRIMER','SEKUNDER','TERSIER'];
+  var sel = document.getElementById('af_det');
+  if (sel) sel.innerHTML = opts.map(function(o){return '<option value="'+o+'">'+o+'</option>';}).join('');
+}
+
+function nextAdd1() {
+  var nopol = (document.getElementById('af_nopol').value||'').trim().toUpperCase();
+  var branch = document.getElementById('af_branch').value;
+  var status = document.getElementById('af_status').value;
+  var tahun = document.getElementById('af_tahun').value;
+  var jenis = document.getElementById('af_jenis').value;
+  if (!nopol||!branch||!status||!tahun||!jenis) { toast('⚠️ Isi semua field wajib (*)','err'); return; }
+  if (units.find(function(u){return u.nopol.toUpperCase()===nopol;})) { toast('❌ Nopol sudah ada!','err'); return; }
+  addData = Object.assign(addData,{nopol:nopol,branch:branch,status:status,tahun:tahun,jenis:jenis,karoseri:document.getElementById('af_kar').value||'BOX',merek:document.getElementById('af_merek').value||''});
+  addStep=2; renderAdd();
+}
+
+function nextAdd2() {
+  var bisnis = document.getElementById('af_bis').value;
+  if (!bisnis) { toast('⚠️ Pilih bisnis terlebih dahulu','err'); return; }
+  addData = Object.assign(addData,{bisnis:bisnis,bisnis_detail:document.getElementById('af_det').value||'',rute:document.getElementById('af_rute').value||'',kepemilikan:document.getElementById('af_kep').value||'PT POS LOGISTIK INDONESIA',volume:document.getElementById('af_vol').value||'',tonase:document.getElementById('af_ton').value||'',gps:document.getElementById('af_gps').value||'AKTIF',inv:document.getElementById('af_inv').value||'INVESTASI'});
+  addStep=3; renderAdd();
+}
+
+function submitAdd() {
+  var btn = document.getElementById('btnAddFleet');
+  btn.disabled=true; btn.textContent='Menyimpan...';
+  var d = addData;
+  fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'addFleet',data:{nopol:d.nopol,branch:d.branch,status:d.status,tahun:d.tahun,jenis:d.jenis,karoseri:d.karoseri||'BOX',merek:d.merek||'',bisnis:d.bisnis,bisnis_detail:d.bisnis_detail||'',rute:d.rute||'',kepemilikan:d.kepemilikan||'PT POS LOGISTIK INDONESIA',volume:d.volume||'',tonase:d.tonase||'',gps:d.gps||'AKTIF',inv:d.inv||'INVESTASI',addedBy:me?me.name:''}})})
+    .then(function(r){return r.json();})
+    .then(function(x){
+      if(!x.ok) throw new Error(x.msg);
+      toast('✅ Unit '+d.nopol+' berhasil ditambahkan!','ok');
+      addStep=1; addData={};
+      goScreen('app'); goTab('units');
+      setTimeout(loadData,1500);
+    })
+    .catch(function(e){
+      toast('❌ '+e.message,'err');
+      btn.disabled=false; btn.textContent='✓ Simpan Unit Baru';
+    });
+}
+
+// ════════════════════════════════════════════════════════
+// EVENT DELEGATION
+// ════════════════════════════════════════════════════════
+document.addEventListener('click', function(e) {
+  // Unit chips
+  var chip = e.target.closest('[data-chip]');
+  if (chip && curTab === 'units') {
+    curChip = chip.dataset.chip;
+    renderTab('units');
+    return;
+  }
+  // WS filter chips
+  var wf = e.target.closest('[data-wf]');
+  if (wf && curTab === 'ws') {
+    filterWS(wf.dataset.wf);
+    return;
+  }
+});
+
+// Unit search
+document.addEventListener('input', function(e) {
+  if (e.target && e.target.id === 'srchInp') {
+    srchQ = e.target.value.toLowerCase();
+    renderTab('units');
+  }
+});
+
+function filterWS(f) {
+  document.querySelectorAll('.ws-card').forEach(function(el) {
+    var prog = el.querySelector('.ws-prog') ? el.querySelector('.ws-prog').textContent : '';
+    el.style.display = (f === 'SEMUA' || prog.includes(f)) ? 'block' : 'none';
+  });
+  document.querySelectorAll('[data-wf]').forEach(function(b) {
+    b.classList.toggle('on', b.dataset.wf === f);
+  });
+}
+
+// ════════════════════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════════════════════
+function setLoad(v) { document.getElementById('loading').classList.toggle('show', v); }
+function toast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type||'');
+  setTimeout(function() { t.className = 'toast'; }, 3000);
+}
+function updateWsDot() {
+  var n = myWs().length;
+  var d = document.getElementById('wsDot');
+  if (d) d.style.display = n > 0 ? 'block' : 'none';
+}
+function doLogout() {
+  me = null; units = []; wsUnits = []; hist = [];
+  try { localStorage.removeItem('fleetUser'); } catch(e) {}
+  document.getElementById('loginUser').value = '';
+  pinVal = ''; refreshPin();
+  document.getElementById('loginErr').style.display = 'none';
+  goScreen('login');
+}
+
+// Auto-login
+try {
+  var saved = localStorage.getItem('fleetUser');
+  if (saved) {
+    var u = USERS.find(function(x) { return x.u === saved; });
+    if (u) document.getElementById('loginUser').value = u.u;
+  }
+} catch(e) {}
+</script>
+</body>
+</html>
